@@ -1,0 +1,57 @@
+@use '@sbone/shared/styles' as *;
+
+.section {
+  @include section($color-primary);
+  overflow: hidden;
+  color: $color-text-inverse;
+}
+
+.inner {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-2xl;
+  max-width: 1040px;
+
+  @include respond-to($breakpoint-md) {
+    flex-direction: row;
+    justify-content: center;
+    gap: $spacing-4xl;
+  }
+}
+
+.phone {
+  flex-shrink: 0;
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0, 20, 70, 0.35));
+}
+
+.content {
+  max-width: 420px;
+  text-align: center;
+
+  @include respond-to($breakpoint-md) {
+    text-align: left;
+  }
+}
+
+.badges {
+  justify-content: center;
+
+  @include respond-to($breakpoint-md) {
+    justify-content: flex-start;
+  }
+}
+
+.title {
+  @include section-heading;
+  color: $color-text-inverse;
+}
+
+.text {
+  @include section-intro;
+  margin-bottom: $spacing-xl;
+  color: $color-nav-link;
+}

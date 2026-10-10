@@ -1,0 +1,92 @@
+@use '../../styles' as *;
+
+.footer {
+  padding: $spacing-xl 0;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-2xl 0;
+  }
+}
+
+.navy {
+  color: $color-text-inverse;
+  background: $color-footer-navy;
+
+  .link {
+    color: $color-text-inverse;
+  }
+
+  .legal {
+    color: $color-nav-link;
+  }
+}
+
+// Sits inside the dashboard content column, under a thin rule
+.light {
+  padding: $spacing-lg 0;
+  background: transparent;
+
+  // width: auto so the side margins below sit inside the column instead of adding to the container's 100% width
+  .inner {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: $spacing-lg $spacing-md 0;
+    border-top: 1px solid $color-border;
+
+    @include respond-to($breakpoint-md) {
+      margin: 0 $spacing-xl;
+      padding: $spacing-lg 0 0;
+    }
+  }
+
+  .links {
+    margin-bottom: $spacing-sm;
+  }
+
+  .link {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-regular;
+    text-transform: none;
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-heading;
+    }
+  }
+
+  .legal {
+    font-size: $font-size-xs;
+    color: $color-text-muted;
+  }
+}
+
+.inner {
+  @include container;
+}
+
+.links {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-xl;
+  margin-bottom: $spacing-lg;
+}
+
+.link {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.legal {
+  max-width: 680px;
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+}

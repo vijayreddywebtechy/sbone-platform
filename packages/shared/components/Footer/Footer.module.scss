@@ -1,0 +1,41 @@
+@use '../../styles' as *;
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-lg $spacing-xl;
+  border-top: 1px solid $color-border;
+  background: $color-surface;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+
+  @include respond-to($breakpoint-md) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.copyright {
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  color: $color-text-muted;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+    text-decoration: underline;
+  }
+}

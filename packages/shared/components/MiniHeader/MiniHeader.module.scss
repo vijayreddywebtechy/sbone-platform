@@ -1,0 +1,23 @@
+@use '../../styles' as *;
+
+.miniHeader {
+  display: flex;
+  align-items: center;
+  height: $utility-bar-height;
+  padding: 0 $spacing-md;
+  background: $color-surface;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+.brand {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-regular;
+  color: $color-primary;
+
+  strong {
+    font-weight: $font-weight-bold;
+  }
+}

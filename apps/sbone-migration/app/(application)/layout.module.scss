@@ -1,0 +1,13 @@
+@use '@sbone/shared/styles' as *;
+
+.app {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  background: $color-page;
+}

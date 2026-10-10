@@ -1,0 +1,184 @@
+@use '../../styles' as *;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  font-family: inherit;
+  font-weight: $font-weight-bold;
+  letter-spacing: $letter-spacing-button;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Sizes
+// SBOne button style: compact height, small bold uppercase label
+.sm {
+  min-height: 32px;
+  padding: 0 $spacing-md;
+  font-size: 0.6875rem; // 11px
+}
+
+.md {
+  min-height: 40px;
+  padding: 0 $spacing-lg;
+  font-size: $font-size-xs; // 12px
+}
+
+// Shapes
+.rounded {
+  border-radius: $radius-sm;
+}
+
+.soft {
+  border-radius: 6px;
+}
+
+.pill {
+  border-radius: $radius-pill;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+// Variants
+.primary {
+  background: $color-primary;
+  color: $color-text-inverse;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-dark;
+  }
+}
+
+.secondary {
+  background: $color-cta;
+  color: $color-text-inverse;
+
+  &:hover:not(:disabled) {
+    background: $color-cta-dark;
+  }
+}
+
+.primary,
+.secondary {
+  &:disabled {
+    background: $color-disabled;
+    color: $color-text-inverse;
+  }
+}
+
+.outline {
+  background: $color-surface;
+  color: $color-accent;
+  border-color: $color-accent;
+
+  &:hover:not(:disabled) {
+    background: $color-info-bg;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+    border-color: $color-disabled;
+  }
+}
+
+.secondaryOutline {
+  background: $color-surface;
+  color: $color-cta;
+  border-color: $color-cta;
+
+  &:hover:not(:disabled) {
+    background: $color-info-bg;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+    border-color: $color-disabled;
+  }
+}
+
+.text {
+  min-height: auto;
+  padding: $spacing-xs $spacing-sm;
+  background: transparent;
+  color: $color-cta;
+
+  &:hover:not(:disabled) {
+    color: $color-cta-dark;
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+  }
+}
+
+.gold {
+  background: $color-gold;
+  color: $color-primary;
+
+  &:hover:not(:disabled) {
+    background: $color-gold-dark;
+  }
+}
+
+.inverse {
+  background: $color-surface;
+  color: $color-primary;
+
+  &:hover:not(:disabled) {
+    background: $color-info-bg;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+  }
+}
+
+.danger {
+  background: $color-error;
+  color: $color-text-inverse;
+
+  &:hover:not(:disabled) {
+    background: #a80016;
+  }
+
+  &:disabled {
+    background: $color-disabled;
+  }
+}
+
+.endIcon {
+  display: inline-flex;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

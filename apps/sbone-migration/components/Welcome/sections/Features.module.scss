@@ -1,0 +1,84 @@
+@use '@sbone/shared/styles' as *;
+
+.section {
+  @include section;
+}
+
+.inner {
+  @include container;
+  max-width: 1040px;
+}
+
+.header {
+  margin-bottom: $spacing-2xl;
+  text-align: center;
+}
+
+.title {
+  @include section-heading;
+}
+
+.intro {
+  @include section-intro;
+}
+
+.grid {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+  }
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-feature;
+}
+
+.icon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  color: $color-text-inverse;
+  background: $color-feature-icon;
+  border-radius: $radius-md;
+}
+
+.cardTitle {
+  margin: 0 0 $spacing-xs;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.cardText {
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  color: $color-text-muted;
+}
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  margin-top: $spacing-2xl;
+}
+
+.ctaText {
+  margin: 0;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}

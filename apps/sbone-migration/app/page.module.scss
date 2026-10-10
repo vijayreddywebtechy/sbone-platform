@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+// The welcome page is full-bleed bands, each applying its own container
+.main {
+  flex: 1;
+}

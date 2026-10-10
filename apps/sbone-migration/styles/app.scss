@@ -1,0 +1,8 @@
+// App-wide styles for SBOne Migration. Tokens, fonts and the base reset come from @sbone/shared.
+@use '@sbone/shared/styles' as *;
+
+html {
+  scroll-behavior: smooth;
+  // Keeps anchored sections clear of the sticky header
+  scroll-padding-top: $utility-bar-height + $nav-height;
+}

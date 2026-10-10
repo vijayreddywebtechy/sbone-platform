@@ -1,0 +1,91 @@
+@use '@sbone/shared/styles' as *;
+
+.sectionMeta {
+  @include caption;
+}
+
+// Two fields per row from md, stacked below; labels sit on the fields' top borders
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 $spacing-md;
+  max-width: 900px;
+  padding-top: $spacing-xs;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.field {
+  margin-bottom: $spacing-md;
+}
+
+// Monthly limit: floating-label box with the currency picker and the amount
+.limit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: $control-height-lg;
+  background: $color-surface;
+  border: 1px solid $color-field-border;
+  border-radius: $radius-sm;
+
+  &:focus-within {
+    border-color: $color-cta;
+    box-shadow: 0 0 0 1px $color-cta;
+  }
+
+  &[data-disabled] {
+    background: $color-background;
+  }
+
+  &[data-invalid] {
+    border-color: $color-error;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0 $spacing-md;
+    font-family: inherit;
+    font-size: $font-size-base;
+    text-align: right;
+    color: $color-heading;
+    background: none;
+    border: 0;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+
+    &:disabled {
+      color: $color-text-muted;
+    }
+  }
+}
+
+.limitLabel {
+  @include floating-label;
+}
+
+.limitPicker {
+  flex-shrink: 0;
+  height: 100%;
+}
+
+.limitCurrency {
+  padding: 0 $spacing-sm 0 $spacing-md;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-text-muted;
+}
+
+.limitHint,
+.limitError {
+  @include caption;
+  margin: $spacing-xs 0 0;
+}
+
+.limitError {
+  color: $color-error;
+}

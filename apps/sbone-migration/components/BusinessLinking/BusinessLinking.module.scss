@@ -1,0 +1,88 @@
+@use '@sbone/shared/styles' as *;
+
+// Role step only; the step frame and card come from LinkingLayout
+.roles {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  @include label;
+  margin-bottom: $spacing-sm;
+  padding: 0;
+}
+
+.roleOptions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(2, minmax(0, 260px));
+  }
+}
+
+// Radio card: native radio drawn in the top-right corner, whole card is the label
+.role {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-md 44px $spacing-md $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: $color-border-strong;
+  }
+
+  &:has(.roleInput:focus-visible) {
+    box-shadow: $focus-ring;
+  }
+}
+
+.roleSelected,
+.roleSelected:hover {
+  background: $color-info-bg;
+  border-color: $color-cta;
+}
+
+.roleInput {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: $color-cta;
+  cursor: pointer;
+}
+
+.roleTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.roleText {
+  @include caption;
+}
+
+.question {
+  margin: $spacing-lg 0 0;
+
+  legend {
+    @include label;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.notice {
+  max-width: 640px;
+  margin: $spacing-lg 0 0;
+  font-size: $font-size-sm;
+}

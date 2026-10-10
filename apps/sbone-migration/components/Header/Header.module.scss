@@ -1,0 +1,213 @@
+@use '@sbone/shared/styles' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+}
+
+// Grey strip above the nav: segment switcher and country
+.utilityBar {
+  background: $color-utility-bar;
+  font-size: $font-size-xs;
+}
+
+.utilityInner {
+  @include container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $utility-bar-height;
+}
+
+.segments {
+  @include list-reset;
+  display: flex;
+  height: $utility-bar-height;
+}
+
+.segment {
+  display: flex;
+  align-items: center;
+  height: $utility-bar-height;
+  padding: 0 $spacing-sm;
+  color: $color-text-muted;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.segmentActive {
+  color: $color-text-inverse;
+  background: $color-primary;
+
+  &:hover {
+    color: $color-text-inverse;
+  }
+}
+
+.country {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $color-text-muted;
+}
+
+.flag {
+  border-radius: 50%;
+}
+
+.nav {
+  background: $color-primary;
+  color: $color-text-inverse;
+}
+
+.navInner {
+  @include container;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  height: $nav-height;
+}
+
+.brand {
+  display: flex;
+}
+
+// Collapses into a drop-down panel below lg
+.menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: $spacing-sm $spacing-md $spacing-md;
+  background: $color-primary;
+  box-shadow: $shadow-elevated;
+
+  @include respond-to($breakpoint-lg) {
+    display: block;
+    position: static;
+    flex: 1;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+}
+
+.menuOpen {
+  display: block;
+}
+
+.links {
+  @include list-reset;
+  display: flex;
+  flex-direction: column;
+
+  @include respond-to($breakpoint-lg) {
+    flex-direction: row;
+    justify-content: center;
+    gap: $spacing-lg;
+  }
+}
+
+.link {
+  display: block;
+  padding: $spacing-sm 0;
+  font-size: $font-size-sm;
+  color: $color-nav-link;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-text-inverse;
+    text-decoration: underline;
+  }
+}
+
+.actions {
+  display: flex;
+  align-self: stretch; // Lets SIGN IN fill the bar's height
+  align-items: center;
+  gap: $spacing-sm;
+  margin-left: auto;
+
+  @include respond-to($breakpoint-lg) {
+    margin-left: 0;
+  }
+}
+
+.iconButton {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: $color-text-inverse;
+  background: none;
+  border: 0;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+// Lock icon only on phones; icon + label from sm. Highlighted while the sign-in panel is open.
+.signIn {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  gap: $spacing-sm;
+  margin-right: (-$spacing-sm);
+  padding: 0 $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-button;
+  text-transform: uppercase;
+  color: $color-text-inverse;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset $focus-ring;
+  }
+
+  @include respond-to($breakpoint-sm) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+.signInActive,
+.signInActive:hover {
+  background: $color-cta;
+}
+
+.signInLabel {
+  display: none;
+
+  @include respond-to($breakpoint-sm) {
+    display: inline;
+  }
+}
+
+.caret {
+  color: $color-cta;
+}
+
+.menuToggle {
+  @include respond-to($breakpoint-lg) {
+    display: none;
+  }
+}

@@ -1,0 +1,37 @@
+@use '@sbone/shared/styles/_variables.scss' as *;
+@use '@sbone/shared/styles/_fonts.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  color: $color-text;
+  background: $color-background;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: $font-weight-bold;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}

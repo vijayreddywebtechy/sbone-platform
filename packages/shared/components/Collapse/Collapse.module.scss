@@ -1,0 +1,26 @@
+// Animates 0 → auto height with a grid row going from 0fr to 1fr
+.collapse {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); // Wide content (e.g. a scrolling table) can't stretch the page
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.3s ease,
+    opacity 0.2s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+// min-height: 0 lets the row shrink to nothing; overflow hidden also contains the content's margins
+.inner {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}

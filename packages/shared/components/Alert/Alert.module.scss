@@ -1,0 +1,73 @@
+@use '../../styles' as *;
+
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  border-left: 4px solid;
+  border-radius: $radius-sm;
+}
+
+.info {
+  background: $color-info-bg;
+  border-color: $color-primary;
+}
+
+.success {
+  background: $color-success-bg;
+  border-color: $color-success;
+}
+
+.warning {
+  background: $color-warning-bg;
+  border-color: $color-warning;
+}
+
+.error {
+  background: $color-error-bg;
+  border-color: $color-error;
+}
+
+.neutral {
+  align-items: center;
+  font-size: $font-size-sm;
+  background: $color-page;
+  border: 1px solid $color-border-strong;
+  border-left: 3px solid $color-heading;
+  border-radius: $radius-md;
+}
+
+.icon {
+  display: flex;
+  flex-shrink: 0;
+  color: $color-text;
+}
+
+.content {
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  font-weight: $font-weight-medium;
+}
+
+.body {
+  font-size: $font-size-sm;
+
+  .title + & {
+    margin-top: $spacing-xs;
+  }
+}
+
+.dismiss {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: $font-size-lg;
+  line-height: 1;
+  color: $color-text-muted;
+  cursor: pointer;
+}

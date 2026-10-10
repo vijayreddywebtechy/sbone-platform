@@ -1,0 +1,302 @@
+@use '@sbone/shared/styles' as *;
+
+// Same light layout as the platform's dashboard pages
+
+.page {
+  // Status colours for the figure dots and the status column
+  --status-active: #{$color-success};
+  --status-pending: #{$color-warning};
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  @include page-title;
+}
+
+.subtitle {
+  @include subtitle;
+  margin-top: 0;
+}
+
+.buttonLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.summary {
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+// ---- Table ----
+
+.tableWrap {
+  overflow-x: auto;
+  contain: paint; // Keeps a wide table from widening the page on phones
+}
+
+.table {
+  width: 100%;
+  font-size: $font-size-sm;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px $spacing-sm;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  thead th {
+    @include label;
+  }
+
+  td {
+    color: $color-heading;
+  }
+}
+
+.row {
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $color-background;
+  }
+}
+
+.rowOpen,
+.rowOpen:hover {
+  background: $color-background;
+
+  td {
+    border-bottom-color: transparent;
+  }
+}
+
+.name {
+  display: block;
+  font-weight: $font-weight-medium;
+}
+
+// Phones: payment type and bank under the name instead of their own columns
+.under {
+  @include caption;
+  display: block;
+
+  @include respond-to($breakpoint-md) {
+    display: none;
+  }
+}
+
+.underStatus {
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  color: $color-heading;
+
+  // Shown as a flex row only below md (the .under rule hides it from md)
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    display: flex;
+  }
+}
+
+.wideOnly {
+  display: none;
+
+  @include respond-to($breakpoint-md) {
+    display: table-cell;
+  }
+}
+
+.mono {
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot_active {
+  background: $color-success;
+}
+
+.dot_inactive {
+  background: $color-text-muted;
+}
+
+.dot_pending {
+  background: $color-warning;
+}
+
+.actionsCell {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right !important;
+}
+
+// Text button in the shared button type (12px bold uppercase)
+.payNow {
+  height: 32px;
+  padding: 0 $spacing-sm;
+  font-family: inherit;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $color-cta;
+  background: none;
+  border: 0;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: $color-info-bg;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.toggle {
+  @include flex-center;
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  margin-left: $spacing-xs;
+  padding: 0;
+  vertical-align: middle;
+  color: $color-text-muted;
+  background: none;
+  border: 0;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    color: $color-heading;
+    background: $color-page;
+  }
+
+  &[aria-expanded='true'] svg {
+    transform: rotate(180deg);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+// Details row: no padding or rule while closed, so it takes no space
+.detailsRow td {
+  padding: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.detailsRowOpen td {
+  background: $color-background;
+  border-bottom: 1px solid $color-border !important;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+  padding: $spacing-xs $spacing-md $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    padding: $spacing-xs $spacing-sm $spacing-md;
+  }
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: $spacing-md $spacing-lg;
+  margin: 0;
+
+  dt {
+    @include label;
+  }
+
+  dd {
+    margin: 2px 0 0;
+    color: $color-heading;
+  }
+}
+
+.edit {
+  justify-self: start;
+  padding: $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $color-cta;
+  text-decoration: none;
+  border-radius: $radius-md;
+
+  &:hover {
+    background: $color-info-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.empty {
+  padding: $spacing-xl !important;
+  text-align: center !important;
+  color: $color-text-muted !important;
+}

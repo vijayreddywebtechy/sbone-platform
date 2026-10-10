@@ -1,0 +1,133 @@
+@use '@sbone/shared/styles' as *;
+
+.inner {
+  @include container;
+}
+
+.connect {
+  padding: $spacing-2xl 0;
+  background: $color-footer;
+  color: $color-text-inverse;
+}
+
+.connectTitle {
+  margin: 0 0 $spacing-xl;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-regular;
+}
+
+.contacts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.contactTitle {
+  margin: 0 0 $spacing-md;
+  font-size: $font-size-base;
+}
+
+.contactList {
+  margin: 0;
+}
+
+.contactLine {
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-sm;
+
+  dt {
+    color: $color-nav-link;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  a {
+    color: $color-text-inverse;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.links {
+  padding: $spacing-xl 0;
+  background: $color-surface;
+}
+
+.linkGroups {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.linkTitle {
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-heading;
+}
+
+.linkList {
+  @include list-reset;
+}
+
+.link {
+  display: inline-block;
+  padding: $spacing-xs 0;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-button;
+  text-transform: uppercase;
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.legal {
+  padding: $spacing-lg 0;
+  background: $color-footer-legal;
+}
+
+.appRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-bottom: $spacing-md;
+}
+
+.appTitle {
+  font-size: $font-size-lg;
+  color: $color-heading;
+}
+
+.disclaimer {
+  margin: 0;
+  font-size: $font-size-xs;
+  line-height: $line-height-base;
+  color: $color-text-muted;
+}

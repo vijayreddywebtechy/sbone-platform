@@ -1,0 +1,19 @@
+{
+  "name": "sbone-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SBOne micro frontends (apps/sbone-migration, apps/sbone-beneficiary-management) sharing the @sbone/shared design system (packages/shared).",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:migration": "npm run dev -w sbone-migration",
+    "dev:beneficiary": "npm run dev -w sbone-beneficiary-management",
+    "build": "npm run build -w sbone-migration -w sbone-beneficiary-management",
+    "lint": "npm run lint -w sbone-migration -w sbone-beneficiary-management"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

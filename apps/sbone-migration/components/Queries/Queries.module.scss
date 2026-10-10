@@ -1,0 +1,301 @@
+@use '@sbone/shared/styles' as *;
+
+// Same light layout as Accounts: plain figure strip, quiet controls, airy rows
+
+.page {
+  // Status colours used by the figure dots and status cells
+  --status-open: #{$color-cta};
+  --status-in-progress: #{$color-warning};
+  --status-resolved: #{$color-success};
+  --status-closed: #{$color-text-muted};
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+// ---- Header ----
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.back {
+  @include back-button;
+}
+
+.title {
+  @include page-title;
+  flex: 1;
+}
+
+.quietButton {
+  @include back-button;
+
+  & {
+    color: $color-text-muted;
+  }
+
+  &:hover:not(:disabled) {
+    color: $color-heading;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.spinning svg {
+  animation: spin 0.7s linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinning svg {
+    animation: none;
+  }
+}
+
+// ---- Status figures ----
+
+.summary {
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+// ---- Rows: stacked on phones, a table-like grid from lg ----
+
+$columns: 28px 136px minmax(0, 1.5fr) minmax(0, 1.5fr) 136px 120px;
+
+.headRow {
+  display: none;
+
+  @include respond-to($breakpoint-lg) {
+    display: grid;
+    grid-template-columns: $columns;
+    align-items: center;
+    column-gap: $spacing-md;
+    padding: 12px $spacing-sm;
+    border-bottom: 1px solid $color-border;
+
+    span {
+      @include label;
+    }
+  }
+}
+
+.headDate {
+  grid-column: 1 / 3;
+}
+
+.headStatus {
+  text-align: right;
+}
+
+.rows {
+  @include list-reset;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) auto;
+  grid-template-areas:
+    'toggle date status'
+    '. logged logged'
+    '. subject subject'
+    '. due due'
+    '. details details';
+  column-gap: $spacing-sm;
+  row-gap: $spacing-sm;
+  padding: 12px $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-heading;
+  border-bottom: 1px solid $color-border;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $color-background;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: $columns;
+    grid-template-areas:
+      'toggle date logged subject due status'
+      '. . details details details details';
+    align-items: center;
+    column-gap: $spacing-md;
+    row-gap: 0;
+  }
+}
+
+.rowOpen,
+.rowOpen:hover {
+  background: $color-background;
+}
+
+.toggle {
+  @include flex-center;
+  grid-area: toggle;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  color: $color-text-muted;
+  background: none;
+  border: 0;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  svg {
+    transition: transform 0.2s ease;
+  }
+
+  &:hover {
+    color: $color-heading;
+  }
+
+  &[aria-expanded='true'] svg {
+    transform: rotate(90deg);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.date {
+  grid-area: date;
+  align-self: center;
+  color: $color-text-muted;
+
+  @include respond-to($breakpoint-lg) {
+    white-space: nowrap;
+  }
+}
+
+.logged {
+  grid-area: logged;
+  min-width: 0;
+}
+
+.subject {
+  grid-area: subject;
+  min-width: 0;
+}
+
+.due {
+  grid-area: due;
+  color: $color-text-muted;
+
+  @include respond-to($breakpoint-lg) {
+    white-space: nowrap;
+  }
+}
+
+.primary {
+  display: block;
+  color: $color-heading;
+  overflow-wrap: anywhere;
+}
+
+.secondary {
+  @include caption;
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.statusCell {
+  grid-area: status;
+  align-self: center;
+  text-align: right;
+}
+
+// Coloured dot and text, no pill
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: $color-heading;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+// Field names only on phones, where the column headings are hidden
+.cellLabel {
+  @include label;
+  display: block;
+
+  @include respond-to($breakpoint-lg) {
+    @include visually-hidden;
+  }
+}
+
+.date .cellLabel {
+  @include visually-hidden;
+}
+
+.detailsWrap {
+  grid-area: details;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+  padding-top: $spacing-sm;
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-top: 12px;
+  }
+
+  dl {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+  }
+
+  dt {
+    @include label;
+  }
+
+  dd {
+    margin: 2px 0 0;
+    color: $color-heading;
+  }
+}
+
+.closedDate {
+  @include respond-to($breakpoint-lg) {
+    text-align: right;
+  }
+}
+
+.empty {
+  margin: 0;
+  padding: $spacing-xl;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.note {
+  margin: 0;
+}

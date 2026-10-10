@@ -1,0 +1,41 @@
+@use '../../styles' as *;
+
+.label {
+  display: block;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-text;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.track {
+  flex: 1;
+  height: 6px;
+  overflow: hidden;
+  border-radius: $radius-pill;
+  background: $color-progress-track;
+}
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: $color-progress;
+  transition: width 0.3s ease;
+}
+
+.badge {
+  flex-shrink: 0;
+  padding: 2px $spacing-sm;
+  font-size: 0.6875rem;
+  font-weight: $font-weight-medium;
+  color: $color-progress;
+  background: $color-info-bg;
+  border: 1px solid $color-focus-border;
+  border-radius: $radius-pill;
+}

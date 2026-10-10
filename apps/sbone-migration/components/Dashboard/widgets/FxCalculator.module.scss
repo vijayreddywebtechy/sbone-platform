@@ -1,0 +1,91 @@
+@use '@sbone/shared/styles' as *;
+
+.intro {
+  margin: 0;
+  font-size: $font-size-sm;
+  color: $color-text;
+}
+
+.timestamp {
+  margin: $spacing-md 0 $spacing-lg;
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+}
+
+// Outlined field with its label on the top border
+.field {
+  position: relative;
+  margin-bottom: $spacing-lg;
+}
+
+.label {
+  @include floating-label;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  height: $control-height;
+  border: 1px solid $color-field-border;
+  border-radius: $radius-sm;
+
+  &:focus-within {
+    border-color: $color-cta;
+    box-shadow: $focus-ring;
+  }
+
+  // Currency picker; its menu opens over the panel below
+  .currency {
+    flex-shrink: 0;
+    height: 100%;
+  }
+
+  input,
+  output {
+    flex: 1;
+    min-width: 0;
+    padding: 0 $spacing-md;
+    font-family: inherit;
+    font-size: $font-size-sm;
+    text-align: right;
+    color: $color-text;
+    background: none;
+    border: 0;
+    outline: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  output {
+    color: $color-text-muted;
+  }
+}
+
+.rate {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-md;
+  font-size: $font-size-xs;
+  color: $color-text;
+
+  strong {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: $color-heading;
+  }
+}
+
+.rateLabel {
+  color: $color-text-muted;
+}
+
+.disclaimer {
+  margin: 0;
+
+  * {
+    font-size: $font-size-xs;
+  }
+}
+
+.link {
+  color: $color-cta;
+}

@@ -1,0 +1,61 @@
+@use '@sbone/shared/styles' as *;
+
+.section {
+  @include section($color-page);
+}
+
+.inner {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+  max-width: 1040px;
+
+  @include respond-to($breakpoint-md) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.title {
+  @include section-heading;
+  max-width: 360px;
+}
+
+.cards {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(2, 240px);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-lg;
+  text-align: center;
+  background: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-feature;
+}
+
+.cardTitle {
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.cardText {
+  flex: 1;
+  margin: 0 0 $spacing-lg;
+  font-size: $font-size-xs;
+  line-height: $line-height-base;
+  color: $color-text-muted;
+}

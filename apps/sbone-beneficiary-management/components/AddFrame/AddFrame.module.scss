@@ -1,0 +1,91 @@
+@use '@sbone/shared/styles' as *;
+
+// Same frame as the invite flow in the platform: breadcrumb, progress card, panels, action bar
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.breadcrumb {
+  @include list-reset;
+  @include caption;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  // Chevron separator between crumbs
+  li + li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin: 0 $spacing-sm;
+    border-top: 1.5px solid $color-text-muted;
+    border-right: 1.5px solid $color-text-muted;
+    transform: rotate(45deg);
+  }
+
+  [aria-current='page'] {
+    color: $color-cta;
+  }
+}
+
+.crumb {
+  color: $color-text-muted;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-heading;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.progress {
+  padding: $spacing-md;
+  background: $color-surface;
+  border-radius: $radius-lg;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.stepper ol {
+  margin-bottom: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-surface;
+  border-radius: $radius-lg;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+
+  // A single action (e.g. Done) sits on the right
+  > :only-child {
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,369 @@
+@use '../../styles' as *;
+
+.srOnly {
+  @include visually-hidden;
+}
+
+// ---- Figure strip ----
+
+// Hairlines are the 1px gaps between cells showing the strip's background, so any column count works
+.figures {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1px;
+  margin: 0;
+  overflow: hidden;
+  background: $color-border;
+  border-radius: inherit;
+
+  @include respond-to(380px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: repeat(var(--figure-columns, 4), minmax(0, 1fr));
+  }
+}
+
+// Two per row: an odd last figure spans the row instead of leaving an empty cell
+.figures:not(.figuresWide) .figure:last-child:nth-child(odd) {
+  @include respond-to(380px) {
+    grid-column: 1 / -1;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-column: auto;
+  }
+}
+
+.figuresWide .figure:last-child:nth-child(odd) {
+  @include respond-to($breakpoint-md) {
+    grid-column: 1 / -1;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-column: auto;
+  }
+}
+
+// Long values (e.g. large amounts) stay one per row until there's room for two
+.figuresWide {
+  @include respond-to(380px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: repeat(var(--figure-columns, 4), minmax(0, 1fr));
+  }
+}
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: $spacing-md;
+  background: $color-surface;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+
+  dt {
+    @include caption;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  dd {
+    margin: 0;
+    font-size: $font-size-base;
+    white-space: nowrap;
+    color: $color-heading;
+    font-variant-numeric: tabular-nums;
+
+    // Larger once columns are wide enough for big amounts
+    @include respond-to($breakpoint-xl) {
+      font-size: $font-size-lg;
+    }
+  }
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.info {
+  display: inline-flex;
+  color: $color-text-muted;
+  cursor: help;
+}
+
+.note {
+  @include caption;
+}
+
+.negative {
+  color: $color-error !important;
+}
+
+// ---- Toolbar ----
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.toolbarEnd {
+  display: flex;
+  flex: 1 1 240px;
+  flex-wrap: wrap; // Extra controls drop to a second line on phones instead of being cut off
+  align-items: center;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  min-width: 0;
+}
+
+// Segmented switch: grey track, white selected segment
+.segmented {
+  display: inline-flex;
+  flex-shrink: 0;
+  max-width: 100%;
+  padding: 3px;
+  overflow-x: auto;
+  background: $color-page;
+  border-radius: $radius-md;
+}
+
+.segment {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+  color: $color-text-muted;
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    color: $color-heading;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+// Icon-only segment: square, the icon centred
+.segmentIcon {
+  justify-content: center;
+  width: 34px;
+  padding: 0;
+}
+
+.segmentActive {
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-surface;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.1);
+}
+
+.segmentCount {
+  @include caption;
+  font-weight: $font-weight-regular;
+}
+
+.search {
+  display: flex;
+  flex: 1 1 auto;
+  max-width: 320px;
+  align-items: center;
+  gap: $spacing-sm;
+  min-width: min(180px, 100%);
+  height: 36px;
+  padding: 0 12px;
+  color: $color-text-muted;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+
+  &:focus-within {
+    border-color: $color-cta;
+    box-shadow: $focus-ring;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: $font-size-sm;
+    color: $color-heading;
+    background: none;
+    border: 0;
+    outline: none;
+
+    &::placeholder {
+      color: $color-text-muted;
+    }
+  }
+}
+
+// ---- Filter menu: floats under the button over the table instead of pushing it down ----
+
+.filterMenu {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.quietControl {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 12px;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  color: $color-heading;
+  background: $color-surface;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  &:hover,
+  &[aria-expanded='true'] {
+    background: $color-page;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.quietControlActive {
+  color: $color-cta;
+  border-color: $color-cta;
+}
+
+.filterValue {
+  font-weight: $font-weight-medium;
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  padding: 6px;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow:
+    0 12px 32px rgba(16, 24, 40, 0.14),
+    0 2px 6px rgba(16, 24, 40, 0.06);
+  animation: menu-in 0.14s ease-out;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popover {
+    animation: none;
+  }
+}
+
+.popoverTitle {
+  @include label;
+  padding: 6px 10px 4px;
+}
+
+// Same look as the shared dropdown's options
+.popoverOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: 9px 10px;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  text-align: left;
+  color: $color-heading;
+  background: none;
+  border: 0;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    background: $color-info-bg;
+  }
+
+  &[aria-checked='true'] {
+    font-weight: $font-weight-medium;
+    color: $color-cta;
+  }
+}
+
+// ---- Pager ----
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding-top: $spacing-md;
+}
+
+.pages {
+  display: flex;
+  gap: 6px;
+}
+
+.pageButton {
+  @include page-button;
+}
+
+.pageActive {
+  @include page-button-active;
+}
+
+.range {
+  @include caption;
+}

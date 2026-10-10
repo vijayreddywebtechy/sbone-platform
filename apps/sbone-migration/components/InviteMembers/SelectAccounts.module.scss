@@ -1,0 +1,162 @@
+@use '@sbone/shared/styles' as *;
+
+$limit-width: 176px; // Wide enough for "International monthly limit*" on one line
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.title {
+  @include section-title;
+  margin: 0;
+}
+
+.subtitle {
+  @include subtitle;
+  margin: 2px 0 0;
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  padding: $spacing-md $spacing-md $spacing-lg;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg $spacing-lg;
+  }
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin: 0;
+  padding: $spacing-sm 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  border-bottom: 1px solid $color-border; // Light divider heading, as the other sub-sections
+}
+
+.count {
+  @include caption;
+  font-weight: $font-weight-regular;
+}
+
+.rows {
+  @include list-reset;
+}
+
+// Switch, icon, account details; limits in fixed columns on the right from lg, wrapped underneath below
+.row {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: $spacing-sm $spacing-md;
+  padding: $spacing-md;
+  border-bottom: 1px solid $color-border;
+  transition: opacity 0.15s ease;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
+  }
+}
+
+.rowOff .info,
+.rowOff .icon {
+  opacity: 0.45;
+}
+
+// The switch's own label is screen-reader only, so drop the gap it would leave
+.switch {
+  gap: 0;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.detail {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.limits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr));
+  grid-column: 1 / -1;
+  gap: $spacing-md;
+  padding-top: $spacing-sm;
+
+  // Fixed columns from lg so the same limit lines up down the list (savings skip the last one)
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: repeat(3, $limit-width);
+    grid-column: auto;
+    padding-top: 0;
+  }
+}
+
+.limit {
+  margin: 0;
+
+  // Labels sit on the field's border and must not wrap into the value
+  label {
+    white-space: nowrap;
+  }
+
+  input {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@include respond-to($breakpoint-lg) {
+  .domesticDaily {
+    grid-column: 1;
+  }
+
+  .domesticMonthly {
+    grid-column: 2;
+  }
+
+  .internationalMonthly {
+    grid-column: 3;
+  }
+
+  // Savings have no international limit: their two fields sit under the last two columns, as in the design
+  .limits:not(:has(.internationalMonthly)) {
+    .domesticDaily {
+      grid-column: 2;
+    }
+
+    .domesticMonthly {
+      grid-column: 3;
+    }
+  }
+}
+
+.check {
+  margin: 0;
+
+  * {
+    font-size: $font-size-xs;
+  }
+}

@@ -1,0 +1,30 @@
+@use '@sbone/shared/styles' as *;
+
+.icon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: $radius-md;
+}
+
+@mixin tone($color) {
+  color: $color;
+  background: rgba($color, 0.1);
+}
+
+.current {
+  @include tone($color-account-current);
+}
+
+.savings {
+  @include tone($color-account-savings);
+}
+
+.notice {
+  @include tone($color-account-notice);
+}
+
+.foreign {
+  @include tone($color-account-foreign);
+}

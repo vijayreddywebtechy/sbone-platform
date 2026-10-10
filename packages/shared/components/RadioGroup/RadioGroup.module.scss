@@ -1,0 +1,128 @@
+@use '../../styles' as *;
+
+.group {
+  margin: 0 0 $spacing-md;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  @include field-label;
+  padding: 0;
+  margin-bottom: $spacing-sm;
+}
+
+.required {
+  color: $color-error;
+}
+
+.options {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.vertical {
+  flex-direction: column;
+}
+
+.horizontal {
+  flex-wrap: wrap;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+}
+
+.selected {
+  border-color: $color-primary;
+  background: $color-info-bg;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  flex-shrink: 0;
+  accent-color: $color-progress;
+}
+
+.optionLabel {
+  display: block;
+  font-weight: $font-weight-medium;
+}
+
+.description {
+  display: block;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.error {
+  @include field-message;
+  color: $color-error;
+}
+
+.groupDescription {
+  margin: -$spacing-xs 0 $spacing-sm;
+  font-size: $font-size-xs;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+// Plain: bare radio buttons in a row, no tiles
+.plain {
+  .options {
+    gap: $spacing-sm;
+  }
+
+  .horizontal {
+    gap: $spacing-xl;
+  }
+
+  .option,
+  .option:hover,
+  .selected {
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+
+  .option {
+    align-items: center;
+  }
+
+  .optionLabel {
+    font-weight: $font-weight-regular;
+    font-size: $font-size-sm;
+  }
+
+  .input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+  }
+}
+
+// Unanswered required question: red rings until the customer chooses
+.group[aria-invalid='true'] .input {
+  // Native radios ignore border-radius, so outline/box-shadow draw a square; drop-shadow follows the round shape
+  filter: drop-shadow(1px 0 0 $color-error) drop-shadow(-1px 0 0 $color-error) drop-shadow(0 1px 0 $color-error)
+    drop-shadow(0 -1px 0 $color-error);
+}

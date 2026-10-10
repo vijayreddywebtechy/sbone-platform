@@ -1,0 +1,28 @@
+@use '../../styles' as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  padding: $spacing-md $spacing-xl;
+  background: $color-primary;
+  color: #fff;
+}
+
+.brand {
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
+  padding-right: $spacing-lg;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.title {
+  margin: 0;
+  font-size: $font-size-lg;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: $font-size-sm;
+  opacity: 0.8;
+}

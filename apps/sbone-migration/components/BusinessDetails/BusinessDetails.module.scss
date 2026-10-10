@@ -1,0 +1,427 @@
+@use '@sbone/shared/styles' as *;
+
+// Same light layout as Accounts, Queries, Insights and Documents
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.primary {
+  display: block;
+  color: $color-heading;
+  overflow-wrap: anywhere;
+}
+
+.secondary {
+  @include caption;
+  display: block;
+}
+
+// ---- Header ----
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.back {
+  @include back-button;
+}
+
+.title {
+  @include page-title;
+}
+
+// ---- Summary ----
+
+.summary {
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+.summaryTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border-bottom: 1px solid $color-border;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.avatar {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-cta;
+  background: $color-icon-bg;
+  border-radius: $radius-md;
+}
+
+.entityText {
+  display: flex;
+  flex: 1 1 260px;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.entityName {
+  @include card-title;
+  overflow-wrap: anywhere;
+}
+
+.entityMeta {
+  @include caption;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px $spacing-sm;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: $color-heading;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dotGood {
+  background: $color-success;
+}
+
+.dotWarn {
+  background: $color-warning;
+}
+
+// Profile admin, quiet on the right of the summary
+.admin {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  max-width: 100%;
+
+  @include respond-to($breakpoint-md) {
+    padding-left: $spacing-md;
+    border-left: 1px solid $color-border;
+  }
+}
+
+.adminAvatar {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-page;
+  border-radius: 50%;
+}
+
+.adminText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.adminLabel {
+  @include label;
+}
+
+.adminName {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: $font-size-sm;
+  color: $color-heading;
+}
+
+.adminEmail {
+  @include caption;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.presence {
+  width: 7px;
+  height: 7px;
+  background: $color-border-strong;
+  border-radius: 50%;
+}
+
+.presenceOnline {
+  background: $color-success;
+}
+
+// ---- Two columns: accounts and directors / identity, compliance and links ----
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+  align-items: start;
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  min-width: 0;
+}
+
+// ---- Linked accounts ----
+
+.tableWrap {
+  overflow-x: auto;
+  contain: paint; // Keeps a wide table from widening the page on phones
+}
+
+.table {
+  width: 100%;
+  font-size: $font-size-sm;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px $spacing-sm;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid $color-border;
+  }
+
+  thead th {
+    @include label;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: $color-background;
+    }
+
+    &:last-child td {
+      border-bottom: 0;
+    }
+  }
+}
+
+.amount {
+  text-align: right !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.negative {
+  color: $color-error;
+}
+
+// Phones: the opening date is left out
+.wideOnly {
+  display: none;
+
+  @include respond-to($breakpoint-md) {
+    display: table-cell;
+  }
+}
+
+// Phones: the available amount under each balance is left out
+.wideOnlyBlock {
+  display: none;
+
+  @include respond-to($breakpoint-md) {
+    display: block;
+  }
+}
+
+// ---- Directors ----
+
+.directors {
+  @include list-reset;
+}
+
+.director {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px $spacing-sm;
+  font-size: $font-size-sm;
+  border-bottom: 1px solid $color-border;
+  transition: background 0.15s ease;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &:hover {
+    background: $color-background;
+  }
+}
+
+.directorAvatar {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-page;
+  border-radius: 50%;
+}
+
+.directorName {
+  flex: 1;
+  min-width: 0;
+  color: $color-heading;
+  overflow-wrap: anywhere;
+}
+
+// ---- Legal identity ----
+
+.legal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+
+  dt {
+    @include label;
+  }
+
+  dd {
+    margin: 2px 0 0;
+    font-size: $font-size-sm;
+    color: $color-heading;
+    overflow-wrap: anywhere;
+  }
+}
+
+// ---- Compliance ----
+
+.checks {
+  @include list-reset;
+}
+
+.check {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 12px;
+  padding: 10px 0;
+  font-size: $font-size-sm;
+  border-bottom: 1px solid $color-border;
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  > span:first-child {
+    grid-row: span 2;
+    padding-top: 1px;
+  }
+}
+
+.checkDone {
+  display: flex;
+  color: $color-success;
+}
+
+.checkPending {
+  display: flex;
+  color: $color-account-foreign;
+}
+
+.checkTitle {
+  color: $color-heading;
+}
+
+.checkDetail {
+  @include caption;
+  overflow-wrap: anywhere;
+}
+
+// ---- Quick links ----
+
+.links {
+  @include list-reset;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 (-$spacing-sm);
+  padding: 10px $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+  text-decoration: none;
+  border-radius: $radius-md;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: $color-background;
+
+    > svg {
+      color: $color-cta;
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.linkIcon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  color: $color-cta;
+  background: $color-icon-bg;
+  border-radius: $radius-md;
+}
+
+.linkText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}

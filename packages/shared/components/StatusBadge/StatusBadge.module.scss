@@ -1,0 +1,50 @@
+@use '../../styles' as *;
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px $spacing-sm;
+  font-size: $font-size-xs;
+  line-height: 1.5;
+  white-space: nowrap;
+  border: 1px solid;
+  border-radius: $radius-pill;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.success {
+  color: $color-success;
+  background: $color-success-bg;
+  border-color: $color-success-ring;
+}
+
+.info {
+  color: $color-cta;
+  background: $color-info-bg;
+  border-color: $color-focus-border;
+}
+
+.warning {
+  color: #a34b00; // Darker than $color-warning so the text keeps 4.5:1 on its tint
+  background: $color-warning-bg;
+  border-color: rgba(237, 108, 2, 0.3);
+}
+
+.error {
+  color: $color-error;
+  background: $color-error-bg;
+  border-color: rgba(208, 2, 27, 0.25);
+}
+
+.neutral {
+  color: $color-text-muted;
+  background: $color-background;
+  border-color: $color-border;
+}

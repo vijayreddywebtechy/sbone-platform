@@ -1,0 +1,105 @@
+@use '../../styles' as *;
+
+.field {
+  position: relative;
+  margin-bottom: $spacing-lg;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: $font-size-xs;
+  color: $color-text;
+}
+
+.control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: $control-height-lg;
+  background: $color-surface;
+  border: 1px solid $color-text-muted;
+  border-radius: $radius-md;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus-within,
+  &.focused {
+    border-color: $color-cta;
+    box-shadow: 0 0 0 1px $color-cta;
+  }
+}
+
+.invalid {
+  border-color: $color-error;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0 2.25rem 0 $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  color: $color-text;
+  background: transparent;
+  border: 0;
+  outline: none;
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+}
+
+.arrow {
+  position: absolute;
+  right: $spacing-md;
+  color: $color-cta;
+  pointer-events: none;
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + #{$spacing-xs});
+  left: 0;
+  right: 0;
+  z-index: 30;
+  max-height: 280px;
+  margin: 0;
+  padding: $spacing-xs 0;
+  overflow-y: auto;
+  list-style: none;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  box-shadow: 0 6px 16px rgba(0, 20, 70, 0.14);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.option {
+  padding: 10px $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-text;
+  cursor: pointer;
+
+  &[aria-selected='true'] {
+    font-weight: $font-weight-medium;
+  }
+}
+
+.active {
+  background: $color-page;
+}
+
+.empty {
+  padding: 10px $spacing-md;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+.error {
+  @include field-message;
+  color: $color-error;
+}

@@ -1,0 +1,72 @@
+@use '../../styles' as *;
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  width: 100%;
+  min-height: 112px;
+  padding: $spacing-lg;
+  font-family: inherit;
+  text-align: left;
+  color: $color-text;
+  background: $color-surface;
+  border: 1px solid transparent;
+  border-radius: $radius-md;
+  box-shadow: $shadow-raised;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: $color-focus-border;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: $color-accent;
+    box-shadow: $shadow-raised, $focus-ring;
+  }
+
+  @include respond-to($breakpoint-md) {
+    min-height: 130px;
+    padding: $spacing-lg $spacing-xl;
+  }
+}
+
+.icon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $color-icon-bg;
+  color: $color-accent;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  display: block;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+
+  @include respond-to($breakpoint-md) {
+    font-size: $font-size-lg;
+  }
+}
+
+.description {
+  display: block;
+  margin-top: $spacing-xs;
+  font-size: $font-size-sm;
+  line-height: 1.45;
+  color: $color-text-muted;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: $color-accent;
+}

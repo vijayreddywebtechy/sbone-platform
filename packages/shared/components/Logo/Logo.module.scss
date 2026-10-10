@@ -1,0 +1,12 @@
+.logo {
+  display: inline-block;
+  flex-shrink: 0;
+  // Crops the artwork to the shield for the "mark" variant
+  overflow: hidden;
+  line-height: 0;
+}
+
+.image {
+  display: block;
+  max-width: none;
+}

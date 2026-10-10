@@ -1,0 +1,219 @@
+@use '@sbone/shared/styles' as *;
+
+// Page frame (title, width) comes from FlowPage, as on the other standalone flow screens
+
+// ---- Application summary: tinted strip with the card, product and the main action ----
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md $spacing-lg;
+  margin-bottom: $spacing-lg;
+  padding: $spacing-md;
+  background: $color-background;
+  border-radius: $radius-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.cardImage {
+  flex-shrink: 0;
+  width: 96px;
+  height: auto;
+
+  @include respond-to($breakpoint-md) {
+    width: 120px;
+  }
+}
+
+.summaryText {
+  display: flex;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.eyebrow {
+  @include label;
+}
+
+.product {
+  @include section-title;
+}
+
+.reference {
+  @include caption;
+  font-variant-numeric: tabular-nums;
+}
+
+// Button with the waiting status under it; right-aligned from md
+.summaryEnd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-sm;
+
+  @include respond-to($breakpoint-md) {
+    align-items: flex-end;
+  }
+}
+
+.awaiting {
+  @include caption;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+// ---- Directors ----
+
+.directorsHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin-bottom: 12px;
+}
+
+.directorsTitle {
+  @include card-title;
+}
+
+.count {
+  @include caption;
+  padding: 2px 10px;
+  background: $color-page;
+  border-radius: $radius-pill;
+}
+
+.directors {
+  @include list-reset;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.director {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+
+  & + & {
+    border-top: 1px solid $color-border;
+  }
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+// Ring with a dot: green once signed, amber while pending
+.ring {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: currentColor;
+    border-radius: 50%;
+  }
+}
+
+.ringSigned {
+  color: $color-success;
+}
+
+.ringPending {
+  color: $color-warning;
+}
+
+.directorText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  display: block;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.role {
+  @include caption;
+  display: block;
+}
+
+.statusText {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 4px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-bold;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.signed {
+  color: $color-success;
+}
+
+.pending {
+  color: $color-account-foreign; // Amber that keeps 4.5:1 on white
+}
+
+.footnote {
+  @include subtitle;
+  margin: $spacing-md 0 0;
+}
+
+// ---- Details dialog ----
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: $spacing-md;
+  margin: 0 0 $spacing-lg;
+
+  dt {
+    @include label;
+  }
+
+  dd {
+    margin: 2px 0 0;
+    font-size: $font-size-sm;
+    color: $color-heading;
+  }
+}
+
+.modalHeading {
+  @include label;
+  margin: 0 0 $spacing-xs;
+}
+
+.modalDirectors {
+  @include list-reset;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $spacing-md;
+    padding: 12px 0;
+    border-top: 1px solid $color-border;
+  }
+}

@@ -1,0 +1,40 @@
+@use '@sbone/shared/styles' as *;
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.consents {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// Each consent separated by a hairline, as the rows on the other screens
+.consent {
+  margin: 0;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $color-border;
+
+  &:first-of-type {
+    padding-top: 0;
+  }
+
+  &:last-of-type {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+// Paragraphs inside a consent label
+.text {
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  color: $color-heading;
+
+  & + & {
+    @include caption;
+    margin-top: $spacing-xs;
+  }
+}

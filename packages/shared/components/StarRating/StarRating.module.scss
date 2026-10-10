@@ -1,0 +1,35 @@
+@use '../../styles' as *;
+
+.rating {
+  display: inline-flex;
+  gap: $spacing-sm;
+}
+
+.star {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.input {
+  @include visually-hidden;
+}
+
+.icon {
+  fill: none;
+  stroke: $color-cta;
+  transition: transform 0.1s ease;
+}
+
+.filled {
+  fill: $color-cta;
+}
+
+.star:hover .icon {
+  transform: scale(1.1);
+}
+
+.input:focus-visible + .icon {
+  border-radius: 50%;
+  box-shadow: $focus-ring;
+}

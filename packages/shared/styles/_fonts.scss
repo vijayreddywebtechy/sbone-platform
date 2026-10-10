@@ -1,0 +1,20 @@
+// Benton Sans @font-face declarations, loaded once through global.scss.
+// Pro cuts are used where both the Pro and legacy webfont files exist (400, 700).
+
+@mixin benton-face($file, $weight) {
+  @font-face {
+    font-family: 'Benton Sans';
+    src:
+      url('../fonts/#{$file}.woff2') format('woff2'),
+      url('../fonts/#{$file}.woff') format('woff');
+    font-weight: $weight;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+@include benton-face('bentonsans-extra-light-webfont', 200);
+@include benton-face('bentonsans-book-webfont', 300);
+@include benton-face('BentonSansProRegular_normal_normal', 400);
+@include benton-face('BentonSansProMedium_normal_normal', 500);
+@include benton-face('BentonSansProBold_normal_normal', 700);

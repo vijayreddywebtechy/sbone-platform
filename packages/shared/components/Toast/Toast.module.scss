@@ -1,0 +1,67 @@
+@use '../../styles' as *;
+
+.toast {
+  position: fixed;
+  top: 76px;
+  right: $spacing-md;
+  left: $spacing-md;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  min-height: 44px;
+  padding: $spacing-sm $spacing-md;
+  color: $color-text-inverse;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-elevated;
+  animation: slide-in 0.2s ease-out;
+
+  @include respond-to($breakpoint-md) {
+    left: auto;
+    right: $spacing-xl;
+    min-width: 360px;
+  }
+}
+
+.success {
+  background: #2a905c;
+}
+
+.error {
+  background: $color-error;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.message {
+  flex: 1;
+  font-size: $font-size-sm;
+}
+
+.dismiss {
+  margin-left: $spacing-lg;
+  padding: $spacing-xs 0;
+  border: 0;
+  background: none;
+  font-family: inherit;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-button;
+  text-transform: uppercase;
+  color: inherit;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $color-text-inverse;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}

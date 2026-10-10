@@ -1,0 +1,58 @@
+@use '@sbone/shared/styles' as *;
+
+.actions {
+  display: flex;
+  gap: 0;
+  margin-left: auto;
+
+  @include respond-to($breakpoint-md) {
+    gap: $spacing-lg;
+  }
+}
+
+.action {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: $color-text-muted;
+  background: none;
+  border: 0;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease;
+
+  &:hover {
+    color: $color-cta;
+    background: $color-info-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+
+  @include respond-to($breakpoint-md) {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.previewFacts {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin: 0;
+
+  dt {
+    @include label;
+  }
+
+  dd {
+    margin: 2px 0 0;
+    font-size: $font-size-base;
+    color: $color-heading;
+  }
+}

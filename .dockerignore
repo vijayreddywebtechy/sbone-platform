@@ -1,0 +1,9 @@
+# Keep Docker build contexts small: dependencies and build output are recreated inside the image
+**/node_modules
+**/.next
+**/.env
+**/.env.*
+!**/.env.example
+**/*.tsbuildinfo
+.git
+**/.DS_Store

@@ -1,0 +1,39 @@
+@use '@sbone/shared/styles' as *;
+
+// Same confirmation card as "Invite sent"
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $spacing-2xl $spacing-md;
+  text-align: center;
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+// Green tick in a soft ring
+.icon {
+  @include flex-center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: $spacing-md;
+  color: $color-success;
+  background: $color-success-bg;
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px $color-success-ring;
+}
+
+.title {
+  @include section-title;
+}
+
+.text {
+  @include subtitle;
+  max-width: 460px;
+  margin-bottom: $spacing-lg;
+}
+
+.done {
+  width: 100%;
+  max-width: 240px;
+}

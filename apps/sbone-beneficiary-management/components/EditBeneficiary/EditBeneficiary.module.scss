@@ -1,0 +1,25 @@
+@use '@sbone/shared/styles' as *;
+
+.missing {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  margin: 0 $spacing-md;
+  padding: $spacing-lg;
+  font-size: $font-size-sm;
+  color: $color-heading;
+  background: $color-surface;
+  border-radius: $radius-lg;
+
+  @include respond-to($breakpoint-md) {
+    margin: 0 $spacing-xl;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: $color-cta;
+  }
+}

@@ -1,0 +1,127 @@
+@use '@sbone/shared/styles' as *;
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.question {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: $spacing-md;
+  padding: 0;
+}
+
+.title {
+  @include section-title;
+}
+
+.subtitle {
+  @include subtitle;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 340px));
+  }
+}
+
+// Radio card: icon, title and description, radio in the top-right corner
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  min-height: 72px;
+  padding: $spacing-md 44px $spacing-md $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: $color-border-strong;
+  }
+
+  &:has(.radio:focus-visible) {
+    box-shadow: $focus-ring;
+  }
+}
+
+.selected,
+.selected:hover {
+  background: $color-info-bg;
+  border-color: $color-cta;
+}
+
+.disabled,
+.disabled:hover {
+  color: $color-text-muted;
+  background: $color-background;
+  border-color: $color-border;
+  cursor: not-allowed;
+
+  .icon {
+    color: $color-text-muted;
+    background: $color-border;
+  }
+
+  .optionTitle {
+    color: $color-text-muted;
+  }
+}
+
+.radio {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: $color-cta;
+  cursor: pointer;
+}
+
+// Coming-soon card shows no radio
+.radioHidden {
+  opacity: 0;
+}
+
+.icon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: $color-cta;
+  background: $color-icon-bg; // Soft icon square, as on the other pages
+  border-radius: $radius-md;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.optionTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.optionDescription {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+}
+

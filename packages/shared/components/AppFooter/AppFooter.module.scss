@@ -1,0 +1,47 @@
+@use '../../styles' as *;
+
+.footer {
+  padding: $spacing-xl 0;
+  background: $color-footer-navy;
+  color: $color-text-inverse;
+}
+
+.inner {
+  @include container;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-3xl;
+  }
+}
+
+.links {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-xl;
+}
+
+.link {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $color-text-inverse;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-text-inverse;
+    outline-offset: 2px;
+  }
+}
+
+.disclaimer {
+  max-width: 600px;
+  margin: $spacing-lg 0 0;
+  font-size: $font-size-xs;
+  line-height: 1.6;
+}

@@ -1,0 +1,157 @@
+@use '../../styles' as *;
+
+.field {
+  margin-bottom: $spacing-md;
+}
+
+.label {
+  @include field-label;
+}
+
+.required {
+  color: $color-error;
+}
+
+.control {
+  display: flex;
+  align-items: center;
+  background: $color-surface;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: $control-height;
+  padding: 0;
+  font-family: inherit;
+  font-size: $font-size-base;
+  color: $color-text;
+  background: transparent;
+  border: 0;
+  outline: none;
+
+  &::placeholder {
+    color: $color-disabled;
+  }
+
+  &:disabled {
+    color: $color-text-muted;
+    cursor: not-allowed;
+  }
+}
+
+.startAdornment {
+  display: flex;
+  align-items: center;
+  margin-right: $spacing-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text;
+}
+
+.adornment {
+  display: flex;
+  align-items: center;
+  margin-left: $spacing-sm;
+}
+
+// Outlined: boxed input with label above
+.outlined {
+  .control {
+    padding: 0 $spacing-md;
+    border: 1px solid $color-border-strong;
+    border-radius: $radius-sm;
+
+    &:focus-within {
+      border-color: $color-accent;
+      box-shadow: $focus-ring;
+    }
+  }
+
+  .invalid,
+  .invalid:focus-within {
+    border-color: $color-error;
+  }
+}
+
+// Underline: bottom border only, small muted label
+.underline {
+  margin-bottom: $spacing-lg;
+
+  .label {
+    margin-bottom: 0;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-regular;
+    color: $color-text-muted;
+  }
+
+  .control {
+    border-bottom: 1px solid $color-border-strong;
+
+    &:focus-within {
+      border-bottom-color: $color-accent;
+      box-shadow: 0 1px 0 0 $color-accent;
+    }
+  }
+
+  .input {
+    height: 36px;
+  }
+
+  .invalid,
+  .invalid:focus-within {
+    border-bottom-color: $color-error;
+    box-shadow: 0 1px 0 0 $color-error;
+  }
+}
+
+// Floating: outlined box with the label sitting on its top border
+.floating {
+  position: relative;
+  margin-bottom: $spacing-lg;
+
+  .label {
+    @include floating-label;
+  }
+
+  .control {
+    height: $control-height-lg;
+    padding: 0 $spacing-md;
+    border: 1px solid $color-field-border;
+    border-radius: $radius-sm;
+
+    &:focus-within {
+      border-color: $color-accent;
+      box-shadow: 0 0 0 1px $color-accent;
+    }
+  }
+
+  .input {
+    height: 100%;
+    font-size: $font-size-sm;
+  }
+
+  .invalid,
+  .invalid:focus-within {
+    border-color: $color-error;
+    box-shadow: none;
+  }
+}
+
+.disabled {
+  background: $color-page;
+
+  .input {
+    color: $color-text-muted;
+  }
+}
+
+.message {
+  @include field-message;
+  font-size: $font-size-xs;
+  line-height: 1.4;
+}
+
+.errorMessage {
+  color: $color-error;
+}

@@ -1,0 +1,36 @@
+@use '../../styles' as *;
+
+.field {
+  margin-bottom: $spacing-md;
+}
+
+.option {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  flex-shrink: 0;
+  accent-color: $color-progress;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.error {
+  @include field-message;
+  color: $color-error;
+}

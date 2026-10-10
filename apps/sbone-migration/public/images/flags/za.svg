@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="South Africa">
+  <defs><clipPath id="c"><circle cx="12" cy="12" r="12"/></clipPath></defs>
+  <g clip-path="url(#c)">
+    <rect width="24" height="12" fill="#E03C31"/><rect y="12" width="24" height="12" fill="#001489"/>
+    <path d="M0 0 12 12 0 24Z" fill="#000"/>
+    <path d="M-2 -3 13.5 9.5H26v5H13.5L-2 27" fill="none" stroke="#fff" stroke-width="6"/>
+    <path d="M-2 -3 13.5 9.5H26v5H13.5L-2 27" fill="none" stroke="#007749" stroke-width="3.6"/>
+    <path d="M0 4.5 9 12 0 19.5Z" fill="#FFB81C"/><path d="M0 7 6 12 0 17Z" fill="#000"/>
+  </g>
+</svg>

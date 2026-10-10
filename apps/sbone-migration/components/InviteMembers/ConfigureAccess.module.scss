@@ -1,0 +1,299 @@
+@use '@sbone/shared/styles' as *;
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.title {
+  @include section-title;
+  margin: 0;
+}
+
+.subtitle {
+  @include subtitle;
+  margin: 2px 0 0;
+}
+
+// ---- Role cards ----
+
+.roleField {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  @include caption;
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.roles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  // All five side by side, sharing the row equally (as in the design)
+  @include respond-to($breakpoint-xl) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+// White card, no outline until selected; radio drawn as an outlined circle top-right
+.role {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  padding: $spacing-md 48px $spacing-md $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  &:hover {
+    border-color: $color-border-strong;
+  }
+
+  &:has(.roleRadio:focus-visible) {
+    box-shadow: $focus-ring;
+  }
+}
+
+.roleSelected,
+.roleSelected:hover {
+  background: $color-info-bg;
+  border-color: $color-cta;
+}
+
+.roleRadio {
+  position: absolute;
+  top: $spacing-md;
+  right: $spacing-md;
+  display: grid;
+  place-content: center;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  background: $color-surface;
+  border: 1.5px solid $color-heading;
+  border-radius: 50%;
+  appearance: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: $color-cta;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.15s ease;
+  }
+
+  &:checked {
+    border-color: $color-cta;
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.roleTitle {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.roleText {
+  @include caption;
+}
+
+// Groups inside a card: stacked, or two side by side (account access, administrative)
+.groups {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+  padding: $spacing-md $spacing-lg $spacing-lg;
+}
+
+.groupsSideBySide {
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// Permissions in one or more columns; some groups lay theirs out in a single row
+.columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: $spacing-xl;
+  padding-top: $spacing-sm;
+
+  @include respond-to($breakpoint-md) {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+}
+
+.permissions {
+  @include list-reset;
+
+  li {
+    padding: $spacing-sm $spacing-md;
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.inline .permissions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 $spacing-xl;
+
+  li {
+    border-bottom: 0;
+  }
+}
+
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-xl;
+  margin: 0;
+  padding: $spacing-md;
+  border: 0;
+
+  &:disabled {
+    color: $color-disabled;
+  }
+}
+
+.level {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  cursor: pointer;
+
+  input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: $color-cta;
+  }
+
+  :disabled > & {
+    cursor: not-allowed;
+  }
+}
+
+// ---- Users table ----
+
+.noUsers {
+  margin: 0;
+  padding: $spacing-lg;
+  font-size: $font-size-sm;
+
+  a {
+    color: $color-cta;
+  }
+}
+
+.tableWrap {
+  overflow-x: auto;
+  // Without it, mobile browsers still count the wide table when sizing the page and zoom the whole page out
+  contain: paint;
+}
+
+.table {
+  width: 100%;
+  min-width: 860px;
+  font-size: $font-size-xs;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: $spacing-sm $spacing-md;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  thead th {
+    font-size: 0.6875rem;
+    font-weight: $font-weight-regular;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    border-bottom: 1px solid $color-border;
+  }
+
+  tbody th {
+    font-weight: $font-weight-regular;
+  }
+
+  tbody td,
+  tbody th {
+    color: $color-text;
+  }
+}
+
+.firstName {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.avatar {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-page; // Same soft initials as Roles & Permissions
+  border-radius: 50%;
+}
+
+.remove {
+  @include flex-center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: $color-error;
+  background: none;
+  border: 0;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-error-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.check {
+  margin: 0;
+
+  * {
+    font-size: $font-size-xs;
+  }
+}

@@ -1,0 +1,4 @@
+// Single entry point: @use '@sbone/shared/styles' as *;
+@forward '@sbone/shared/styles/_variables.scss';
+@forward '@sbone/shared/styles/_mixins.scss';
+@forward '@sbone/shared/styles/_typography.scss';

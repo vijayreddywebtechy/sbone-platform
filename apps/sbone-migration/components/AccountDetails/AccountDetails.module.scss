@@ -1,0 +1,228 @@
+@use '@sbone/shared/styles' as *;
+
+// Light, quiet layout: one strong action (Transact), plain figures, neutral controls
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.srOnly {
+  @include visually-hidden;
+}
+
+// ---- Header with the account switcher ----
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.back {
+  @include back-button;
+}
+
+.title {
+  @include page-title;
+  flex: 1;
+}
+
+.switcher {
+  flex: 1 1 100%;
+  min-width: 0;
+  margin: $spacing-sm 0 0;
+
+  @include respond-to($breakpoint-md) {
+    flex: 0 1 380px;
+    margin: 0;
+  }
+}
+
+// ---- Summary ----
+
+.summary {
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+.summaryTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border-bottom: 1px solid $color-border;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.accountIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.accountText {
+  display: flex;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.accountName {
+  @include card-title;
+}
+
+.accountMeta {
+  @include caption;
+}
+
+.summaryActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+// Neutral icon buttons so Transact stays the only strong action
+.quietButton {
+  @include back-button;
+
+  & {
+    color: $color-text-muted;
+  }
+
+  &:hover:not(:disabled) {
+    color: $color-heading;
+  }
+
+  &[aria-pressed='true'] {
+    color: $color-cta;
+    background: $color-info-bg;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.spinning svg {
+  animation: spin 0.7s linear;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinning svg {
+    animation: none;
+  }
+}
+
+// ---- Tables ----
+
+.tableWrap {
+  overflow-x: auto;
+  contain: paint; // Keeps a wide table from widening the page on phones
+}
+
+.table {
+  width: 100%;
+  font-size: $font-size-sm;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px $spacing-sm;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  thead th {
+    @include label;
+  }
+
+  td {
+    color: $color-heading;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: $color-background;
+    }
+  }
+}
+
+.muted {
+  color: $color-text-muted !important;
+  white-space: nowrap;
+}
+
+.description {
+  overflow-wrap: anywhere;
+}
+
+.docName {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  svg {
+    flex-shrink: 0;
+    color: $color-text-muted;
+  }
+}
+
+.amount {
+  text-align: right !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.amountIn {
+  color: $color-success !important;
+}
+
+// Phones: date under the description instead of its own column; period hidden
+.dateColumn,
+.periodColumn {
+  display: none;
+
+  @include respond-to($breakpoint-md) {
+    display: table-cell;
+  }
+}
+
+.dateUnder {
+  @include caption;
+  display: block;
+
+  @include respond-to($breakpoint-md) {
+    display: none;
+  }
+}
+
+.actionsCell {
+  width: 1%; // Shrinks to the buttons
+  white-space: nowrap;
+}
+
+.empty {
+  padding: $spacing-lg !important;
+  text-align: center !important;
+  color: $color-text-muted !important;
+}

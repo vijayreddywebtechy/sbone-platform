@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Hydro plant and green fields at Lowmar Farm">
+  <defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fb3e8"/><stop offset="1" stop-color="#dcebfa"/></linearGradient></defs>
+  <rect width="640" height="360" fill="url(#s)"/>
+  <path d="M0 170c120-40 220-30 320 0s220 30 320 0v190H0Z" fill="#5f9e4f"/>
+  <path d="M0 230c140-30 260-20 380 10s180 20 260 0v120H0Z" fill="#7fbf5f"/>
+  <g stroke="#4f8a3f" stroke-width="4" opacity=".6"><path d="M0 280 640 250M0 310 640 285M0 340 640 320"/></g>
+  <path d="M430 120h90l14 90h-118Z" fill="#c9d6ea"/><rect x="452" y="140" width="46" height="70" fill="#0033a1"/>
+  <path d="M400 210c30 10 90 10 150 0v14c-60 10-120 10-150 0Z" fill="#3a8fd6"/>
+</svg>

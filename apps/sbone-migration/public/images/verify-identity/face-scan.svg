@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 130" role="img" aria-label="Desktop computer showing a face scan, with an ID card and a security shield">
+  <!-- Monitor -->
+  <rect x="12" y="6" width="134" height="94" rx="6" fill="#bcd3fb" stroke="#0033a1" stroke-width="1.5"/>
+  <rect x="18" y="12" width="122" height="74" rx="2" fill="#fff"/>
+  <rect x="18" y="12" width="122" height="7" fill="#0033a1"/>
+  <rect x="62" y="14.5" width="34" height="2" rx="1" fill="#fff" opacity=".8"/>
+  <circle cx="79" cy="93" r="3" fill="#0062e1"/>
+  <path d="M68 100h22l4 14H64z" fill="#bcd3fb" stroke="#0033a1" stroke-width="1.5" stroke-linejoin="round"/>
+  <rect x="54" y="114" width="50" height="5" rx="2.5" fill="#0033a1"/>
+  <!-- Scan frame and face -->
+  <g fill="none" stroke="#0033a1" stroke-width="1.2" stroke-linecap="round">
+    <path d="M66 26h-5v5M92 26h5v5M66 58h-5v-5M92 58h5v-5"/>
+  </g>
+  <circle cx="79" cy="42" r="11" fill="#e8f0fe" stroke="#0062e1" stroke-width="1.2"/>
+  <path d="M70 37c2-6 15-7 18 0" fill="none" stroke="#0062e1" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="75.5" cy="41" r="1" fill="#0033a1"/>
+  <circle cx="82.5" cy="41" r="1" fill="#0033a1"/>
+  <path d="M75.5 46c2 2 5 2 7 0" fill="none" stroke="#0033a1" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Scan button -->
+  <rect x="68" y="66" width="22" height="7" rx="1" fill="#0033a1"/>
+  <rect x="73" y="68.75" width="12" height="1.5" rx=".75" fill="#fff"/>
+  <!-- ID card -->
+  <rect x="116" y="42" width="34" height="24" rx="3" fill="#fff" stroke="#0033a1" stroke-width="1.2"/>
+  <rect x="120" y="46" width="10" height="3" rx="1" fill="#ffb52a"/>
+  <rect x="120" y="52" width="12" height="2" rx="1" fill="#c4c9ce"/>
+  <rect x="120" y="57" width="9" height="2" rx="1" fill="#c4c9ce"/>
+  <rect x="136" y="47" width="10" height="13" rx="1.5" fill="#e8f0fe" stroke="#0062e1"/>
+  <circle cx="141" cy="51.5" r="2" fill="#0062e1"/>
+  <path d="M137.5 58c.8-2.4 6.2-2.4 7 0" fill="#0062e1"/>
+  <!-- Shield with padlock -->
+  <path d="M20 62l16 6v14c0 10-7 17-16 21-9-4-16-11-16-21V68z" fill="#0033a1"/>
+  <rect x="14" y="80" width="12" height="9" rx="1.5" fill="#ffb52a"/>
+  <path d="M16.5 80v-3a3.5 3.5 0 0 1 7 0v3" fill="none" stroke="#ffb52a" stroke-width="1.8"/>
+</svg>

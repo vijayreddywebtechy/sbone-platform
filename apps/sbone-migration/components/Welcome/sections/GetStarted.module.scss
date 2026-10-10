@@ -1,0 +1,126 @@
+@use '@sbone/shared/styles' as *;
+
+.section {
+  @include section($color-page);
+}
+
+.inner {
+  @include container;
+  max-width: 1040px;
+}
+
+.header {
+  margin-bottom: $spacing-xl;
+  text-align: center;
+}
+
+.title {
+  @include section-heading;
+}
+
+.intro {
+  @include section-intro;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-xl;
+}
+
+.tab {
+  min-height: 32px;
+  padding: $spacing-xs $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-xs;
+  color: $color-cta;
+  background: $color-surface;
+  border: 1px solid $color-cta;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: $color-info-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.tabSelected,
+.tabSelected:hover {
+  color: $color-text-inverse;
+  background: $color-cta;
+}
+
+.steps {
+  @include list-reset;
+  background: $color-surface;
+  border-radius: $radius-md;
+  box-shadow: $shadow-feature;
+  overflow: hidden;
+}
+
+// Icon + title on the left, description on the right from md up
+.step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: $spacing-md;
+  row-gap: $spacing-sm;
+  padding: $spacing-lg;
+  color: $color-text;
+  border-bottom: 1px solid $color-border;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: 48px 220px 1fr;
+    column-gap: $spacing-lg;
+    padding: $spacing-xl;
+  }
+}
+
+.stepActive {
+  color: $color-text-inverse;
+  background: $color-step-active;
+
+  .stepTitle,
+  .stepText,
+  .stepIcon {
+    color: $color-text-inverse;
+  }
+}
+
+.stepIcon {
+  display: flex;
+  color: $color-primary;
+}
+
+.stepTitle {
+  margin: 0;
+  font-size: $font-size-md;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
+  color: $color-heading;
+}
+
+.stepText {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  color: $color-text-muted;
+
+  @include respond-to($breakpoint-md) {
+    grid-column: auto;
+  }
+}

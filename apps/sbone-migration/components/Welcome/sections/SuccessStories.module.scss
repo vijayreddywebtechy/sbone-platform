@@ -1,0 +1,115 @@
+@use '@sbone/shared/styles' as *;
+
+.section {
+  @include section;
+}
+
+.inner {
+  @include container;
+  max-width: 1040px;
+}
+
+.header {
+  margin-bottom: $spacing-2xl;
+  text-align: center;
+}
+
+.title {
+  @include section-heading;
+}
+
+.intro {
+  @include section-intro;
+}
+
+.grid {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-feature;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: $color-background;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.mediaBadge {
+  @include flex-center;
+  position: absolute;
+  z-index: 1;
+  left: $spacing-md;
+  bottom: -18px;
+  width: 36px;
+  height: 36px;
+  color: $color-text-inverse;
+  background: $color-cta;
+  border-radius: $radius-sm;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: $spacing-xl $spacing-md $spacing-md;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+}
+
+.cardTitle {
+  flex: 1;
+  margin: 0 0 $spacing-md;
+  font-size: $font-size-base;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-heading;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  letter-spacing: $letter-spacing-button;
+  text-transform: uppercase;
+  color: $color-cta;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: $spacing-2xl;
+}

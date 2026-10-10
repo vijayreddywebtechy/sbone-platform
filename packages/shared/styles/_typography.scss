@@ -1,0 +1,190 @@
+// Shared type scale and page controls, so every screen's titles, subtitles and small buttons match.
+// Use these instead of setting font sizes on headings directly.
+@use '@sbone/shared/styles/_variables.scss' as *;
+
+// Main heading of a screen ("Roles & Permissions", "Approval Details")
+@mixin page-title {
+  margin: 0;
+  font-size: $font-size-xl; // 28px
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
+  color: $color-heading;
+}
+
+// Heading of a step or of the main card on a screen ("Select invite type", "Enter one-time PIN")
+@mixin section-title {
+  margin: 0;
+  font-size: $font-size-lg; // 20px
+  font-weight: $font-weight-medium;
+  line-height: 1.3;
+  color: $color-heading;
+}
+
+// Header of a panel or card inside a screen ("Accounts", "Legal Identity", "Requester Details")
+@mixin card-title {
+  margin: 0;
+  font-size: $font-size-base; // 16px
+  font-weight: $font-weight-medium;
+  line-height: 1.4;
+  color: $color-heading;
+}
+
+// Line under a page, section or card title
+@mixin subtitle {
+  margin: $spacing-xs 0 0;
+  font-size: $font-size-sm; // 14px
+  font-weight: $font-weight-regular;
+  line-height: $line-height-base;
+  color: $color-text-muted;
+}
+
+// Small supporting text: notes, dates, emails
+@mixin caption {
+  font-size: $font-size-xs; // 12px
+  line-height: $line-height-base;
+  color: $color-text-muted;
+}
+
+// Uppercase label above a value or figure ("OPEN ACCOUNTS", "REGISTERED NAME")
+@mixin label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-regular;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+// ---- Page controls ----
+
+// Square back button beside a page title
+@mixin back-button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: $color-heading;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-info-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+// Filter pill with a count ("All 4", "Open 1"); add the active modifier for the selected one
+@mixin chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-xs;
+  white-space: nowrap;
+  color: $color-heading;
+  background: $color-surface;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    background: $color-info-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+@mixin chip-active {
+  color: $color-text-inverse;
+  background: $color-cta;
+  border-color: $color-cta;
+
+  &:hover {
+    background: $color-cta;
+  }
+}
+
+// Numbered and prev/next buttons in table pagination; add page-button-active for the current page
+@mixin page-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  color: $color-heading;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: $color-info-bg;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+@mixin page-button-active {
+  color: $color-text-inverse;
+  background: $color-cta;
+  border-color: $color-cta;
+
+  &:hover:not(:disabled) {
+    background: $color-cta;
+  }
+}
+
+// "Rows per page" number box beside pagination
+@mixin page-size-input {
+  width: 56px;
+  height: 32px;
+  padding: 0 $spacing-sm;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  text-align: center;
+  color: $color-heading;
+  background: $color-surface;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-md;
+  appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    margin: 0;
+    appearance: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: $color-cta;
+    box-shadow: $focus-ring;
+  }
+}

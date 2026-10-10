@@ -1,0 +1,51 @@
+@use '../../styles' as *;
+
+.field {
+  margin-bottom: $spacing-lg;
+}
+
+.label {
+  display: block;
+  margin-bottom: $spacing-sm;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-bold;
+  color: $color-heading;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  min-height: 80px;
+  padding: $spacing-sm $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-sm;
+  line-height: 1.5;
+  color: $color-text;
+  background: $color-surface;
+  border: 1px solid $color-field-border;
+  border-radius: $radius-sm;
+  resize: vertical;
+
+  &::placeholder {
+    color: $color-disabled;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-cta;
+    box-shadow: 0 0 0 1px $color-cta;
+  }
+}
+
+.invalid {
+  border-color: $color-error;
+}
+
+.message {
+  @include field-message;
+  font-size: $font-size-xs;
+}
+
+.error {
+  color: $color-error;
+}

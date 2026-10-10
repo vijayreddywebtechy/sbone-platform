@@ -1,0 +1,27 @@
+@use '@sbone/shared/styles' as *;
+
+.section {
+  @include section;
+}
+
+.inner {
+  @include container;
+  max-width: 1040px;
+}
+
+.title {
+  @include section-heading;
+  margin-bottom: $spacing-xl;
+  text-align: center;
+}
+
+.list {
+  border-top: 1px solid $color-progress-track;
+}
+
+.answer {
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  color: $color-text-muted;
+}

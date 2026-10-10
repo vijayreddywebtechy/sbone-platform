@@ -1,0 +1,21 @@
+@use '@sbone/shared/styles' as *;
+
+// Two fields sharing the panel's width equally from sm, stacked below
+.fields {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 $spacing-md;
+  padding-top: $spacing-sm; // Room for the labels on the fields' top borders
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.field {
+  margin-bottom: $spacing-md;
+}
+
+.note {
+  margin: $spacing-xs 0 0;
+}

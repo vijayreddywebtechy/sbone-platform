@@ -1,0 +1,77 @@
+@use '@sbone/shared/styles' as *;
+
+.blockHeading {
+  margin: 0;
+  font: inherit;
+}
+
+.card {
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+.cardHeader,
+.groupHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  width: 100%;
+  font-family: inherit;
+  text-align: left;
+  border: 0;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset $focus-ring;
+  }
+}
+
+.cardHeader {
+  min-height: 56px; // Same as the dashboard panels
+  padding: $spacing-sm $spacing-lg;
+  background: none;
+  border-bottom: 1px solid $color-border;
+}
+
+.groupHeader {
+  min-height: 40px;
+  padding: $spacing-sm 0;
+  background: none;
+  border-bottom: 1px solid $color-border;
+}
+
+// Sub-section titles are a step smaller than card titles
+.groupHeader .blockTitle {
+  font-size: $font-size-sm;
+}
+
+.blockTitle {
+  @include card-title;
+  flex: 1;
+}
+
+.summary {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: $color-heading;
+  transition: transform 0.2s ease;
+}
+
+.chevronClosed {
+  transform: rotate(180deg);
+}
+
+
+// Header-only block: not clickable, and a card without content needs no divider under its header
+.staticHeader {
+  cursor: default;
+}
+
+.headerOnly .cardHeader {
+  border-bottom: 0;
+}

@@ -1,0 +1,159 @@
+@use '@sbone/shared/styles' as *;
+
+// Page title, panel and action bar come from FlowPage and Panel
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.count {
+  @include caption;
+}
+
+// Carousel: cards start at the left and the next one peeks in at the edge, so it's clear there are more
+.track {
+  @include list-reset;
+  --gap: #{$spacing-md};
+  --visible: 1.25; // cards in view, including the peeking one
+  display: flex;
+  gap: var(--gap);
+  margin: 0 (-$spacing-xs);
+  padding: $spacing-xs $spacing-xs $spacing-sm;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: $spacing-xs;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include respond-to($breakpoint-sm) {
+    --visible: 2.25;
+  }
+
+  @include respond-to($breakpoint-md) {
+    --visible: 3.25;
+  }
+
+  @include respond-to($breakpoint-lg) {
+    --visible: 4.25;
+  }
+}
+
+.slide {
+  flex: 0 0 calc((100% - (var(--visible) - 1) * var(--gap)) / var(--visible));
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+// Flat bordered card, as the option cards on the other screens
+.profile {
+  gap: 2px;
+  min-height: 160px;
+  padding: $spacing-md $spacing-sm;
+}
+
+.icon {
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: $spacing-sm;
+  color: $color-cta;
+  background: $color-icon-bg;
+  border-radius: $radius-md;
+}
+
+.name {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.reg {
+  @include caption;
+  font-variant-numeric: tabular-nums;
+}
+
+// Coloured dot and text, as the statuses on the other screens
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: $spacing-sm;
+  font-size: $font-size-xs;
+  color: $color-heading;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dotLinked {
+  background: $color-success;
+}
+
+.dotOpen {
+  background: $color-cta;
+}
+
+// Scroll indicator under the carousel: light track, blue thumb sized and placed by scroll position
+.indicator {
+  width: 96px;
+  height: 4px;
+  margin: $spacing-md auto 0;
+  overflow: hidden;
+  background: $color-icon-bg;
+  border-radius: $radius-pill;
+}
+
+.thumb {
+  display: block;
+  height: 100%;
+  background: $color-cta;
+  border-radius: $radius-pill;
+  transition: transform 0.1s linear;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.empty {
+  margin: 0;
+  padding: $spacing-lg 0;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+// "Can't see your registered business?": quiet card, text on the left and the button on the right
+.missing {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-surface;
+  border-radius: $radius-lg;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.missingText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.missingTitle {
+  @include card-title;
+}
+
+.missingNote {
+  @include caption;
+}

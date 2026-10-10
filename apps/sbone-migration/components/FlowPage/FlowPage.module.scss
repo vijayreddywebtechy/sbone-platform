@@ -1,0 +1,52 @@
+@use '@sbone/shared/styles' as *;
+
+// Same look as the dashboard pages: page title, white panels and a white action bar on the grey page
+
+.page {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding-top: $spacing-xl;
+  padding-bottom: $spacing-2xl;
+}
+
+// Narrow centred column (one-time PIN)
+.narrow {
+  max-width: calc(440px + 2 * #{$spacing-xl});
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.title {
+  @include page-title;
+}
+
+.subtitle {
+  @include subtitle;
+  margin-top: 0;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-surface;
+  border-radius: $radius-lg;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+// A single action (e.g. Scan, Next) sits on the right
+.actions > :only-child {
+  margin-left: auto;
+}

@@ -1,0 +1,33 @@
+@use '../../styles' as *;
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $nav-height;
+  padding-left: $spacing-md;
+  background: $color-primary;
+  color: $color-text-inverse;
+
+  @include respond-to($breakpoint-md) {
+    padding-left: $spacing-lg;
+  }
+}
+
+.close {
+  @include flex-center;
+  align-self: stretch;
+  width: $nav-height;
+  color: $color-text-inverse;
+  background: $color-primary-dark;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: $color-footer-navy;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset $focus-ring;
+  }
+}

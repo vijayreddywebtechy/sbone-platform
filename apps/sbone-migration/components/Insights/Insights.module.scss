@@ -1,0 +1,498 @@
+@use '@sbone/shared/styles' as *;
+
+// Same light layout as Accounts and Queries: summary with a figure strip, panels, quiet controls
+
+$in-color: $color-success;
+$out-color: $color-heading;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.caption {
+  @include caption;
+}
+
+// ---- Header with the account switcher ----
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.back {
+  @include back-button;
+}
+
+.title {
+  @include page-title;
+  flex: 1;
+}
+
+.switcher {
+  flex: 1 1 100%;
+  min-width: 0;
+  margin: $spacing-sm 0 0;
+
+  @include respond-to($breakpoint-md) {
+    flex: 0 1 380px;
+    margin: 0;
+  }
+}
+
+// ---- Summary ----
+
+.summary {
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+.summaryTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  border-bottom: 1px solid $color-border;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.accountIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.accountText {
+  display: flex;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.accountName {
+  @include card-title;
+}
+
+.accountMeta {
+  @include caption;
+}
+
+.monthNav {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.monthName {
+  min-width: 128px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  color: $color-heading;
+}
+
+.quietButton {
+  @include back-button;
+
+  & {
+    width: 36px;
+    height: 36px;
+    color: $color-text-muted;
+  }
+
+  &:hover:not(:disabled) {
+    color: $color-heading;
+  }
+
+  &:disabled {
+    color: $color-disabled;
+    cursor: not-allowed;
+  }
+}
+
+.positive {
+  color: $in-color;
+}
+
+// ---- Smart insights ----
+
+.insights {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+.insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.insightIcon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.tone_good {
+  color: $color-success;
+  background: $color-success-bg;
+}
+
+.tone_warn {
+  color: $color-account-foreign;
+  background: $color-warning-bg;
+}
+
+.tone_info {
+  color: $color-cta;
+  background: $color-icon-bg;
+}
+
+.insightText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: $font-size-sm;
+  color: $color-heading;
+}
+
+.insightLabel {
+  @include caption;
+}
+
+// ---- Calendar and payees ----
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+  align-items: start;
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.calendarIntro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  margin-bottom: 12px;
+}
+
+.legend {
+  @include list-reset;
+  display: flex;
+  gap: $spacing-md;
+  @include caption;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.inColor {
+  background: $in-color;
+}
+
+.outColor {
+  background: $out-color;
+}
+
+.week,
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.weekday {
+  @include caption;
+  padding: $spacing-xs 0;
+  text-align: center;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-height: 44px;
+  padding: 6px;
+  font-family: inherit;
+  text-align: left;
+  color: $color-heading;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+
+  @include respond-to($breakpoint-md) {
+    min-height: 52px;
+  }
+}
+
+button.day {
+  cursor: pointer;
+
+  &:hover {
+    background: $color-background;
+    border-color: $color-border-strong;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.dayEmpty {
+  background: $color-background;
+  border-color: transparent;
+}
+
+.weekend .dayNumber {
+  color: $color-disabled;
+}
+
+.daySelected,
+.daySelected:hover {
+  background: $color-info-bg !important;
+  border-color: $color-cta !important;
+}
+
+.dayNumber {
+  font-size: $font-size-xs;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.bar {
+  min-width: 3px;
+  max-width: calc(100% - 22px);
+  height: 3px;
+  border-radius: $radius-pill;
+}
+
+// Amounts beside the bars only where there's room for them
+.barValue {
+  display: none;
+  font-size: 0.5625rem;
+  line-height: 1;
+  color: $color-text-muted;
+  font-variant-numeric: tabular-nums;
+
+  @include respond-to($breakpoint-xl) {
+    display: inline;
+  }
+}
+
+.payeesIntro {
+  margin: 0 0 $spacing-md;
+}
+
+.payees {
+  @include list-reset;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.payee {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rank {
+  @include caption;
+  width: 14px;
+}
+
+.payeeBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.payeeLine {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-heading;
+}
+
+.payeeName {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.payeeAmount {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.payeeTrack {
+  height: 4px;
+  background: $color-page;
+  border-radius: $radius-pill;
+}
+
+.payeeBar {
+  display: block;
+  height: 100%;
+  background: $color-cta;
+  border-radius: $radius-pill;
+}
+
+// ---- Transactions ----
+
+// "04 Sept ×" in the panel header while a calendar day is selected
+.dayFilter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  font-family: inherit;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-cta;
+  background: $color-info-bg;
+  border: 0;
+  border-radius: $radius-pill;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-icon-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.tableWrap {
+  overflow-x: auto;
+  contain: paint; // Keeps a wide table from widening the page on phones
+}
+
+.table {
+  width: 100%;
+  font-size: $font-size-sm;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px $spacing-sm;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  thead th {
+    @include label;
+  }
+
+  td {
+    color: $color-heading;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: $color-background;
+    }
+  }
+}
+
+.muted {
+  color: $color-text-muted !important;
+  white-space: nowrap;
+}
+
+.description {
+  overflow-wrap: anywhere;
+}
+
+.amount {
+  text-align: right !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.amountIn {
+  color: $in-color !important;
+}
+
+// Phones: date under the description instead of its own column
+.dateColumn {
+  display: none;
+
+  @include respond-to($breakpoint-md) {
+    display: table-cell;
+  }
+}
+
+.dateUnder {
+  @include caption;
+  display: block;
+
+  @include respond-to($breakpoint-md) {
+    display: none;
+  }
+}
+
+.empty {
+  margin: 0;
+  padding: $spacing-lg !important;
+  text-align: center !important;
+  color: $color-text-muted !important;
+}

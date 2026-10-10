@@ -1,0 +1,120 @@
+@use '@sbone/shared/styles' as *;
+
+// Same page frame as the other dashboard pages: back button and title, then the step in white cards
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.back {
+  @include back-button;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.title {
+  @include page-title;
+}
+
+.subtitle {
+  @include subtitle;
+  margin-top: 0;
+}
+
+// Progress in a white card, as the summary cards on the other pages
+.progress {
+  padding: $spacing-md;
+  background: $color-surface;
+  border-radius: $radius-lg;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+// Phones: the back button is enough; the breadcrumb only wraps awkwardly
+.heading nav {
+  display: none;
+
+  @include respond-to($breakpoint-md) {
+    display: block;
+  }
+}
+
+.breadcrumb {
+  @include list-reset;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  @include caption;
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  // Chevron separator between crumbs
+  li + li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin: 0 $spacing-sm;
+    border-top: 1.5px solid $color-text-muted;
+    border-right: 1.5px solid $color-text-muted;
+    transform: rotate(45deg);
+  }
+
+  [aria-current='page'] {
+    color: $color-heading;
+  }
+}
+
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  color: $color-text-muted;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-cta;
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.stepper ol {
+  margin-bottom: 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  background: $color-surface;
+  border-radius: $radius-lg;
+}

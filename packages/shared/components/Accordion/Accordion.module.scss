@@ -1,0 +1,53 @@
+@use '../../styles' as *;
+
+.section {
+  border-bottom: 1px solid $color-progress-track;
+}
+
+.heading {
+  margin: 0;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  width: 100%;
+  padding: $spacing-md 0;
+  font-family: inherit;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  text-align: left;
+  color: $color-heading;
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+
+  @include respond-to($breakpoint-md) {
+    font-size: $font-size-md;
+  }
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: $color-cta;
+  transition: transform 0.2s ease;
+}
+
+.open .chevron {
+  transform: rotate(180deg);
+}
+
+.panel {
+  padding: $spacing-sm 0 $spacing-lg;
+
+  &[hidden] {
+    display: none;
+  }
+}

@@ -1,0 +1,122 @@
+@use '@sbone/shared/styles' as *;
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.listTitle {
+  @include label;
+  margin: 0 0 $spacing-xs;
+}
+
+// Rows divided by hairlines, as the lists on the dashboard pages
+.approvers {
+  @include list-reset;
+  border-top: 1px solid $color-border;
+}
+
+// Initials, name and email; phone, role and status in columns from md, under the name below
+.approver {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 2px 12px;
+  padding: 12px 0;
+  font-size: $font-size-sm;
+  border-bottom: 1px solid $color-border;
+
+  .meta,
+  .status {
+    grid-column: 2;
+  }
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: auto minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1.2fr);
+    gap: $spacing-md;
+
+    .meta,
+    .status {
+      grid-column: auto;
+    }
+  }
+}
+
+.withStatus {
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: auto minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1.2fr) auto;
+  }
+}
+
+// Same soft initials as Roles & Permissions
+.avatar {
+  @include flex-center;
+  grid-row: span 4;
+  align-self: start;
+  width: 36px;
+  height: 36px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-page;
+  border-radius: 50%;
+
+  @include respond-to($breakpoint-md) {
+    grid-row: auto;
+    align-self: center;
+  }
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.detail {
+  @include caption;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  @include caption;
+
+  @include respond-to($breakpoint-md) {
+    font-size: $font-size-sm;
+    color: $color-heading;
+  }
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: $color-heading;
+
+  @include respond-to($breakpoint-md) {
+    justify-self: end;
+  }
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot_pending {
+  background: $color-warning;
+}
+
+.dot_approved {
+  background: $color-success;
+}
+
+.note {
+  margin: $spacing-md 0;
+}

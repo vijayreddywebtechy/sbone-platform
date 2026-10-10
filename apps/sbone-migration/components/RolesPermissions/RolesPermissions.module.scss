@@ -1,0 +1,259 @@
+@use '@sbone/shared/styles' as *;
+
+// Same light layout as the other dashboard pages: figure strip, one panel, quiet controls
+
+.page {
+  // Status colours for the figure dots and member status
+  --status-active: #{$color-success};
+  --status-invited: #{$color-warning};
+  --status-declined: #{$color-error};
+  --status-locked: #{$color-text-muted};
+
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.srOnly {
+  @include visually-hidden;
+}
+
+// ---- Header ----
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.back {
+  @include back-button;
+}
+
+.title {
+  @include page-title;
+  flex: 1;
+}
+
+.inviteLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+// ---- Summary ----
+
+.summary {
+  background: $color-surface;
+  border-radius: $radius-lg;
+}
+
+// ---- Members ----
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+  color: $color-heading;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.avatar {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-page;
+  border-radius: 50%;
+}
+
+.identity {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.email {
+  @include caption;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Cards
+
+.grid {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  transition: border-color 0.15s ease;
+
+  &:hover {
+    border-color: $color-border-strong;
+  }
+
+  .person {
+    align-items: flex-start;
+  }
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm $spacing-lg;
+  margin: 0;
+  padding-top: 12px;
+  border-top: 1px solid $color-border;
+
+  dt {
+    @include caption;
+  }
+
+  dd {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: $color-heading;
+  }
+}
+
+.manage {
+  align-self: flex-start;
+}
+
+.jobTitle {
+  color: $color-text-muted;
+}
+
+// ---- Manage dialog ----
+
+.manageBody {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.selfNote {
+  @include caption;
+  margin: 0;
+}
+
+.modalActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: $spacing-sm;
+  width: 100%;
+}
+
+// List
+
+.tableWrap {
+  overflow-x: auto;
+  contain: paint; // Keeps a wide table from widening the page on phones
+}
+
+.table {
+  width: 100%;
+  font-size: $font-size-sm;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 12px $spacing-sm;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+  }
+
+  thead th {
+    @include label;
+  }
+
+  td {
+    color: $color-heading;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: $color-background;
+    }
+
+    &:last-child td {
+      border-bottom: 0;
+    }
+  }
+}
+
+.muted {
+  color: $color-text-muted !important;
+  white-space: nowrap;
+}
+
+.wideOnly {
+  display: none;
+
+  @include respond-to($breakpoint-md) {
+    display: table-cell;
+  }
+}
+
+.actionsCell {
+  width: 1%; // Shrinks to the button
+  text-align: right !important;
+}
+
+.empty {
+  margin: 0;
+  padding: $spacing-xl;
+  text-align: center;
+  color: $color-text-muted;
+}
+
+.note {
+  margin: 0;
+}

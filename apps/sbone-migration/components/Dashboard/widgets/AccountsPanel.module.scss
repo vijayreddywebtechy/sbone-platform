@@ -1,0 +1,185 @@
+@use '@sbone/shared/styles' as *;
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+}
+
+.totalLabel {
+  @include caption;
+}
+
+.totalValue {
+  font-size: $font-size-lg;
+  font-weight: $font-weight-regular;
+  color: $color-heading;
+  font-variant-numeric: tabular-nums;
+}
+
+.eye {
+  @include flex-center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: $color-text-muted;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-heading;
+    background: $color-background;
+  }
+
+  &[aria-pressed='true'] {
+    color: $color-cta;
+    background: $color-info-bg;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+// Cards / List switch on the right
+.viewSwitch {
+  margin-left: auto;
+}
+
+// ---- Cards ----
+
+.grid {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+// List item that holds the account link
+.item {
+  min-width: 0;
+
+  & + & .row {
+    border-top: 1px solid $color-border;
+  }
+}
+
+.card,
+.row {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+
+  &:hover {
+    background: $color-background;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.card:hover {
+  border-color: $color-border-strong;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: $spacing-md $spacing-sm;
+  padding: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+
+  .balanceBlock {
+    grid-column: 1 / -1;
+    padding-top: 12px;
+    border-top: 1px solid $color-border;
+  }
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.name {
+  overflow: hidden;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: $color-heading;
+}
+
+.number {
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+  font-variant-numeric: tabular-nums;
+}
+
+.balanceBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.balanceLabel {
+  @include caption;
+}
+
+.balance {
+  font-weight: $font-weight-regular;
+  color: $color-heading;
+  font-variant-numeric: tabular-nums;
+}
+
+// Overdrawn: red plus the minus sign, so it doesn't rely on colour alone
+.overdrawn {
+  color: $color-error;
+}
+
+// ---- List ----
+
+.list {
+  @include list-reset;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-sm $spacing-md;
+
+  .heading {
+    flex: 1;
+  }
+
+  .balanceBlock {
+    align-items: flex-end;
+  }
+}

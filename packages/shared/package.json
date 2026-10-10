@@ -1,0 +1,23 @@
+{
+  "name": "@sbone/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standard Bank SB1 design system: components, SCSS tokens and mixins, Benton Sans fonts and logos, shared by the SBOne micro frontends.",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./styles": "./styles/_index.scss",
+    "./styles/*": "./styles/*",
+    "./*": "./*"
+  },
+  "sideEffects": [
+    "*.scss",
+    "*.css"
+  ],
+  "peerDependencies": {
+    "next": ">=16",
+    "react": ">=19",
+    "react-dom": ">=19"
+  }
+}

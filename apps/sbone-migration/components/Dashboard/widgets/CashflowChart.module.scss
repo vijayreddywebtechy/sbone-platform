@@ -1,0 +1,147 @@
+@use '@sbone/shared/styles' as *;
+
+// Money in = cyan, money out = blue: the chart pair validated for colour-blind separation
+.scroll {
+  overflow-x: auto;
+}
+
+.chart {
+  position: relative;
+}
+
+.svg {
+  display: block;
+  overflow: visible;
+  touch-action: pan-y;
+}
+
+.grid {
+  stroke: $color-chart-grid;
+  stroke-width: 1;
+}
+
+.axisY,
+.axisX {
+  font-family: $font-family-base;
+  font-size: 11px;
+  fill: $color-text-muted;
+}
+
+.axisY {
+  text-anchor: end;
+  dominant-baseline: middle;
+}
+
+.axisX {
+  text-anchor: middle;
+}
+
+.areaIn {
+  fill: rgba($color-chart-2, 0.35);
+}
+
+.areaOut {
+  fill: rgba($color-chart-1, 0.45);
+}
+
+.lineIn,
+.lineOut {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.lineIn {
+  stroke: $color-chart-2;
+}
+
+.lineOut {
+  stroke: $color-chart-1;
+}
+
+.crosshair {
+  stroke: $color-chart-2;
+  stroke-width: 1;
+}
+
+.dotIn,
+.dotOut {
+  stroke: $color-surface;
+  stroke-width: 2;
+}
+
+.dotIn {
+  fill: $color-chart-2;
+}
+
+.dotOut {
+  fill: $color-chart-1;
+}
+
+.hover {
+  fill: $color-background;
+}
+
+.barIn {
+  fill: $color-chart-2;
+}
+
+.barOut {
+  fill: $color-chart-1;
+}
+
+.tooltip {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 190px;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-xs;
+  color: $color-text;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-raised;
+  pointer-events: none;
+  transform: translateX(16px);
+
+  &[data-flip] {
+    transform: translateX(calc(-100% - 16px));
+  }
+
+  b {
+    margin-left: auto;
+    padding-left: $spacing-md;
+    font-weight: $font-weight-medium;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.tooltipTitle {
+  margin-bottom: 2px;
+  font-size: $font-size-sm;
+  color: $color-heading;
+}
+
+.tooltipRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.keyIn,
+.keyOut {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.keyIn {
+  background: $color-chart-2;
+}
+
+.keyOut {
+  background: $color-chart-1;
+}

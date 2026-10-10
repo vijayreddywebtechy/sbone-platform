@@ -1,0 +1,83 @@
+@use '../../styles' as *;
+
+.stepper {
+  display: flex;
+  margin: 0 0 $spacing-lg;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+  text-align: center;
+
+  // Connector line to the previous step
+  &:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    right: 50%;
+    width: 100%;
+    height: 2px;
+    background: $color-border;
+    z-index: 0;
+  }
+}
+
+.marker {
+  @include flex-center;
+  position: relative;
+  z-index: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid $color-border;
+  background: $color-surface;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-muted;
+}
+
+.label {
+  display: none;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+
+  @include respond-to($breakpoint-md) {
+    display: block;
+  }
+}
+
+.complete {
+  &::before {
+    background: $color-primary !important;
+  }
+
+  .marker {
+    border-color: $color-primary;
+    background: $color-primary;
+    color: #fff;
+  }
+}
+
+.current {
+  &::before {
+    background: $color-primary !important;
+  }
+
+  .marker {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+
+  .label {
+    display: block;
+    font-weight: $font-weight-medium;
+    color: $color-text;
+  }
+}

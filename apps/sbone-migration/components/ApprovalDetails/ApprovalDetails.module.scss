@@ -1,0 +1,125 @@
+@use '@sbone/shared/styles' as *;
+
+.srOnly {
+  @include visually-hidden;
+}
+
+.people {
+  @include list-reset;
+
+  li + li {
+    border-top: 1px solid $color-border;
+  }
+}
+
+// Initials, name and contact lines, status on the right
+.person {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: $spacing-xs 12px;
+  padding: 12px 0;
+
+  li:first-child > & {
+    padding-top: 0;
+  }
+
+  li:last-child > & {
+    padding-bottom: 0;
+  }
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+
+// Same soft initials as Roles & Permissions
+.avatar {
+  @include flex-center;
+  width: 36px;
+  height: 36px;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-page;
+  border-radius: 50%;
+}
+
+.personText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.extra {
+  color: $color-heading;
+}
+
+.detail {
+  @include caption;
+  overflow-wrap: anywhere;
+}
+
+// Coloured dot and text; under the text on phones
+.status {
+  display: inline-flex;
+  grid-column: 2;
+  align-items: center;
+  gap: 6px;
+  font-size: $font-size-sm;
+  white-space: nowrap;
+  color: $color-heading;
+
+  @include respond-to($breakpoint-sm) {
+    grid-column: auto;
+  }
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dot_pending {
+  background: $color-warning;
+}
+
+.dot_approved {
+  background: $color-success;
+}
+
+.dot_declined {
+  background: $color-error;
+}
+
+.note {
+  margin: 0;
+}
+
+// Stacked full-width on phones (labels don't wrap); side by side from sm
+.decisions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  width: 100%;
+
+  @include respond-to($breakpoint-sm) {
+    flex-direction: row;
+    gap: $spacing-md;
+    width: auto;
+  }
+}
+
+.result {
+  margin: 0;
+  font-size: $font-size-sm;
+  color: $color-heading;
+}

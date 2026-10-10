@@ -1,0 +1,54 @@
+@use '@sbone/shared/styles' as *;
+
+// Permission line: tick/cross mark then the label; excluded ones are greyed out
+.item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-text;
+}
+
+.itemOff {
+  color: $color-disabled;
+}
+
+.mark {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.markOn {
+  color: $color-surface;
+  background: $color-border-strong;
+}
+
+.markOff {
+  color: $color-border-strong;
+  border: 1px solid $color-border;
+}
+
+.level {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin: 0;
+  padding: $spacing-md;
+  font-size: $font-size-sm;
+}
+
+.missing {
+  margin: 0;
+
+  a {
+    color: $color-cta;
+  }
+}
+
+.empty {
+  margin: 0;
+  color: $color-text-muted;
+}

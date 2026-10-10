@@ -1,0 +1,191 @@
+@use '@sbone/shared/styles' as *;
+
+// Same light layout as Business Details, Accounts and the other dashboard pages
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.srOnly {
+  @include visually-hidden;
+}
+
+// ---- Header ----
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.back {
+  @include back-button;
+}
+
+.title {
+  @include page-title;
+}
+
+// ---- Summary ----
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  background: $color-surface;
+  border-radius: $radius-lg;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-md $spacing-lg;
+  }
+}
+
+.avatar {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-cta;
+  background: $color-icon-bg;
+  border-radius: $radius-md;
+}
+
+.summaryText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  @include card-title;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  @include caption;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px $spacing-sm;
+  overflow-wrap: anywhere;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: $color-heading;
+}
+
+.statusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+.dotGood {
+  background: $color-success;
+}
+
+.dotWarn {
+  background: $color-warning;
+}
+
+// ---- Columns: details on the left, preferences and session on the right ----
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-md;
+  align-items: start;
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  min-width: 0;
+}
+
+// Label over value, divided by hairlines
+.details {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+
+  > div {
+    padding: 12px 0;
+    border-bottom: 1px solid $color-border;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  dt {
+    @include label;
+  }
+
+  dd {
+    margin: 2px 0 0;
+    font-size: $font-size-sm;
+    color: $color-heading;
+    overflow-wrap: anywhere;
+  }
+}
+
+// ---- Notifications ----
+
+.channels {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+}
+
+.channelText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.label {
+  @include label;
+}
+
+.value {
+  font-size: $font-size-sm;
+  color: $color-heading;
+  overflow-wrap: anywhere;
+}

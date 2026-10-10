@@ -1,0 +1,40 @@
+@use '@sbone/shared/styles' as *;
+
+// Copy panel on the left, photo bleeding to the right edge from md up
+.section {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: $color-primary-deep;
+  color: $color-text-inverse;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: 2fr 3fr;
+    min-height: 420px;
+  }
+}
+
+.content {
+  @include split-panel-content;
+}
+
+.title {
+  @include section-heading;
+  max-width: 320px;
+  color: $color-text-inverse;
+}
+
+.text {
+  @include section-intro;
+  max-width: 320px;
+  margin-bottom: $spacing-xl;
+  color: $color-nav-link;
+}
+
+.media {
+  position: relative;
+  min-height: 240px;
+}
+
+.image {
+  object-fit: cover;
+}

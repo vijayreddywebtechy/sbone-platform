@@ -1,0 +1,54 @@
+@use '@sbone/shared/styles' as *;
+
+// Totals as the shared figure strip, framed inside the panel
+.figures {
+  margin-bottom: $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+// Legend on the left, Area / Bars switch on the right
+.chartBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.legend {
+  @include list-reset;
+  @include caption;
+  display: flex;
+  gap: $spacing-md;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.keyIn,
+.keyOut {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.keyIn {
+  background: $color-chart-2;
+}
+
+.keyOut {
+  background: $color-chart-1;
+}
+
+.note {
+  margin: $spacing-md 0 0;
+
+  * {
+    font-size: $font-size-xs;
+  }
+}

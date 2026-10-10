@@ -1,0 +1,87 @@
+@use '@sbone/shared/styles' as *;
+
+// Page title, panel and action bar come from FlowPage and Panel
+
+.notice {
+  margin: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  @include respond-to($breakpoint-md) {
+    flex-direction: row;
+    align-items: center;
+    gap: $spacing-xl;
+  }
+}
+
+.illustration {
+  @include flex-center;
+  flex-shrink: 0;
+  height: 200px;
+  background: $color-page;
+  border-radius: $radius-md;
+
+  @include respond-to($breakpoint-md) {
+    width: 190px;
+    height: 230px;
+  }
+
+  img {
+    width: 180px;
+    height: auto;
+  }
+}
+
+.details {
+  max-width: 560px;
+}
+
+.heading {
+  @include section-title;
+}
+
+.countdown {
+  font-variant-numeric: tabular-nums;
+  color: $color-cta;
+}
+
+.description {
+  @include subtitle;
+}
+
+.listTitle {
+  @include label;
+  margin: $spacing-lg 0 $spacing-sm;
+}
+
+.list {
+  @include list-reset;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  color: $color-heading;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    &::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      background: $color-cta;
+      border-radius: 50%;
+    }
+  }
+}
+
+.action {
+  min-width: 120px;
+}

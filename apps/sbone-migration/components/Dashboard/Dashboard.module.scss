@@ -1,0 +1,286 @@
+@use '@sbone/shared/styles' as *;
+
+// Fills the space beside the side navigation
+.page {
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.title {
+  @include page-title;
+  margin: 0;
+}
+
+.meta {
+  margin: $spacing-xs 0 0;
+  font-size: $font-size-xs;
+  color: $color-text-muted;
+}
+
+// Main widgets plus a narrower tools column from lg
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $spacing-lg;
+
+  @include respond-to($breakpoint-lg) {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    align-items: start;
+  }
+
+  @include respond-to($breakpoint-xl) {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+}
+
+.mainColumn,
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  min-width: 0;
+}
+
+// The side column runs the full height of the content, so the banker card can stay stuck while scrolling
+.sideColumn {
+  @include respond-to($breakpoint-lg) {
+    align-self: stretch;
+  }
+}
+
+// Sticks just below the blue header (64px) with a small gap
+.sticky {
+  @include respond-to($breakpoint-lg) {
+    position: sticky;
+    top: calc(#{$nav-height} + #{$spacing-md});
+    z-index: 1;
+  }
+}
+
+// Panels whose lists run edge to edge
+.flush > div:last-child {
+  padding: 0;
+}
+
+.links {
+  @include list-reset;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: 12px $spacing-lg;
+  font-size: $font-size-sm;
+  color: $color-heading;
+  text-decoration: none;
+  transition: background 0.15s ease;
+
+  li + li > & {
+    border-top: 1px solid $color-border;
+  }
+
+  &:hover {
+    background: $color-background;
+
+    .linkEnd {
+      color: $color-cta;
+    }
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset $focus-ring;
+  }
+}
+
+// Soft icon square, as the Business Details quick links
+.linkIcon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: $color-cta;
+  background: $color-icon-bg;
+  border-radius: $radius-md;
+}
+
+.linkLabel {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.linkEnd {
+  display: flex;
+  flex-shrink: 0;
+  color: $color-text-muted;
+  transition: color 0.15s ease;
+}
+
+.banker {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-lg;
+  border-bottom: 1px solid $color-border;
+
+  > span:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.avatar {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+  background: $color-page;
+  border-radius: 50%;
+}
+
+.bankerName {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.bankerTeam {
+  @include caption;
+}
+
+// ---- Campaign banner ----
+
+.campaign {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+  color: $color-text-inverse;
+  background: $color-primary;
+  border-radius: $radius-md;
+
+  @include respond-to($breakpoint-md) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    min-height: 240px;
+  }
+}
+
+.campaignText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: $spacing-xl $spacing-lg;
+}
+
+.campaignTitle {
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-tight;
+}
+
+.campaignBody {
+  max-width: 320px;
+  margin: 0 0 $spacing-lg;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.apply {
+  min-width: 160px;
+}
+
+.campaignArt {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-lg;
+  background:
+    radial-gradient(circle at 50% 60%, rgba(5, 160, 234, 0.45) 0 30%, transparent 60%),
+    linear-gradient(135deg, $color-primary-deep 0%, $color-cta 100%);
+
+  @include respond-to($breakpoint-md) {
+    display: flex;
+  }
+}
+
+.phone {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(0, 20, 70, 0.4));
+  transform: rotate(-6deg);
+}
+
+// ---- What's new ----
+
+.sectionTitle {
+  @include card-title;
+  margin: 0 0 $spacing-md;
+}
+
+.whatsNew {
+  @include list-reset;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-md;
+
+  @include respond-to($breakpoint-sm) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to($breakpoint-xl) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.newItem {
+  padding: $spacing-md;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+}
+
+.newTitle {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin: 0 0 $spacing-sm;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-heading;
+}
+
+.newIcon {
+  @include flex-center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  color: $color-cta;
+  border: 1px solid $color-focus-border;
+  border-radius: 50%;
+}
+
+.newText {
+  margin: 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  color: $color-text;
+}

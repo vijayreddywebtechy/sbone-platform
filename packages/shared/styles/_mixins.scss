@@ -1,0 +1,159 @@
+@use '@sbone/shared/styles/_variables.scss' as *;
+
+@mixin respond-to($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin card {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow: $shadow-card;
+  padding: $spacing-lg;
+}
+
+@mixin field-label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text;
+}
+
+@mixin field-message {
+  margin: $spacing-xs 0 0;
+  font-size: $font-size-sm;
+  color: $color-text-muted;
+}
+
+@mixin control {
+  width: 100%;
+  height: $control-height;
+  padding: 0 $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-base;
+  color: $color-text;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: $focus-ring;
+  }
+
+  &:disabled {
+    background: $color-background;
+    color: $color-text-muted;
+    cursor: not-allowed;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: 0 $spacing-xl;
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Label that sits on the top border of an outlined control (Figma: input/atoms/floating-label)
+@mixin floating-label {
+  position: absolute;
+  top: -7px;
+  left: 10px;
+  z-index: 1;
+  margin: 0;
+  padding: 0 $spacing-xs;
+  font-size: 0.6875rem;
+  font-weight: $font-weight-regular;
+  line-height: 14px;
+  color: $color-text-muted;
+  // Filled from just above the middle: enough to hide the field's border behind the text, including the
+  // thicker focus border, while the top stays see-through so the label sits cleanly on grey or tinted backgrounds
+  background: linear-gradient(to bottom, transparent calc(50% - 3px), $color-surface calc(50% - 3px));
+}
+
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Full-width page band with the shared vertical rhythm (welcome page sections)
+@mixin section($background: $color-surface) {
+  padding: $spacing-3xl 0;
+  background: $background;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-4xl 0;
+  }
+}
+
+@mixin section-heading {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-regular;
+  line-height: $line-height-tight;
+  color: $color-heading;
+
+  @include respond-to($breakpoint-md) {
+    font-size: $font-size-2xl;
+  }
+}
+
+@mixin section-intro {
+  margin: $spacing-sm 0 0;
+  font-size: $font-size-sm;
+  line-height: $line-height-base;
+  color: $color-text-muted;
+
+  @include respond-to($breakpoint-md) {
+    font-size: $font-size-base;
+  }
+}
+
+// Photo area; falls back to a brand gradient until imagery is supplied
+@mixin photo {
+  background: $gradient-photo;
+  background-position: center;
+  background-size: cover;
+}
+
+// Copy half of a full-bleed split band: keeps the text aligned with the container's left edge
+@mixin split-panel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: $spacing-3xl $spacing-md;
+
+  @include respond-to($breakpoint-md) {
+    padding: $spacing-3xl $spacing-xl $spacing-3xl max($spacing-xl, calc((100vw - #{$container-max-width}) / 2 + #{$spacing-xl}));
+  }
+}

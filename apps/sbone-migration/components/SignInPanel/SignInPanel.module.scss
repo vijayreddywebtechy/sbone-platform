@@ -1,0 +1,208 @@
+@use '@sbone/shared/styles' as *;
+
+$panel-width: 340px;
+$header-height: $utility-bar-height + $nav-height;
+
+.srOnly {
+  @include visually-hidden;
+}
+
+$transition: 0.3s cubic-bezier(0.2, 0, 0, 1);
+
+// Dims the page below the header; fades in and out with the panel
+.backdrop {
+  position: fixed;
+  inset: $header-height 0 0;
+  z-index: $z-header - 1;
+  background: rgba(0, 20, 70, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity $transition,
+    visibility 0s linear 0.3s;
+}
+
+.backdropVisible {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity $transition,
+    visibility 0s;
+}
+
+// Full width below the header on phones, a right-hand panel from sm up.
+// Closed: off-screen and visibility: hidden (out of the tab order); visibility switches after the slide-out.
+.panel {
+  position: fixed;
+  top: $header-height;
+  right: 0;
+  bottom: 0;
+  z-index: $z-header - 1;
+  width: 100%;
+  padding: $spacing-xl $spacing-md $spacing-lg;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: $color-surface;
+  border-top: 4px solid $color-cta;
+  box-shadow: $shadow-elevated;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition:
+    transform $transition,
+    visibility 0s linear 0.3s;
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  @include respond-to($breakpoint-sm) {
+    width: $panel-width;
+    padding-right: $spacing-lg;
+    padding-left: $spacing-lg;
+  }
+}
+
+.open {
+  transform: none;
+  visibility: visible;
+  transition:
+    transform $transition,
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .backdropVisible,
+  .panel,
+  .open {
+    transition: none;
+  }
+}
+
+.close {
+  @include flex-center;
+  position: absolute;
+  top: $spacing-sm;
+  right: $spacing-sm;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: $color-text;
+  background: none;
+  border: 0;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-background;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.group + .group {
+  margin-top: $spacing-lg;
+}
+
+.groupHeading {
+  margin: 0 0 $spacing-sm;
+}
+
+.groupToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-xs 0;
+  font-family: inherit;
+  font-size: $font-size-base;
+  font-weight: $font-weight-bold;
+  color: $color-heading;
+  background: none;
+  border: 0;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.caret {
+  color: $color-cta;
+  transition: transform 0.2s ease;
+}
+
+.caretClosed {
+  transform: rotate(180deg);
+}
+
+.groupBody {
+  padding: $spacing-md;
+  background: $color-page;
+  border-radius: $radius-lg;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.actions {
+  @include list-reset;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+// Bright blue, full-width buttons (links styled as the design's buttons)
+.action {
+  @include flex-center;
+  min-height: 40px;
+  padding: $spacing-xs $spacing-md;
+  font-size: $font-size-xs; // 12px, the SBOne button style
+  font-weight: $font-weight-bold;
+  letter-spacing: $letter-spacing-button;
+  text-align: center;
+  text-transform: uppercase;
+  color: $color-text-inverse;
+  text-decoration: none;
+  background: $color-cta;
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: $color-cta-dark;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}
+
+.links {
+  @include list-reset;
+  display: flex;
+  flex-direction: column;
+  margin-top: $spacing-md;
+}
+
+.link {
+  display: inline-block;
+  padding: 6px 0;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-cta;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: $focus-ring;
+  }
+}

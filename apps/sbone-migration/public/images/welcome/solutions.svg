@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Laptop showing business banking on a desk">
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d3c6e"/><stop offset="1" stop-color="#3f6aa8"/></linearGradient></defs>
+  <rect width="800" height="480" fill="url(#bg)"/>
+  <rect y="330" width="800" height="150" fill="#13284a"/>
+  <g transform="translate(220 120)">
+    <rect width="360" height="220" rx="12" fill="#0b0b0b"/><rect x="12" y="12" width="336" height="196" rx="4" fill="#f5f7fa"/>
+    <rect x="12" y="12" width="336" height="28" fill="#0033a1"/>
+    <rect x="28" y="56" width="140" height="12" rx="3" fill="#c4c9ce"/><rect x="28" y="80" width="300" height="56" rx="6" fill="#ffffff" stroke="#ebeeef"/>
+    <path d="M40 126 80 104l40 10 40-24 40 14 40-20 40 8" fill="none" stroke="#0047ff" stroke-width="4"/>
+    <rect x="28" y="150" width="92" height="44" rx="6" fill="#e8f0fe"/><rect x="132" y="150" width="92" height="44" rx="6" fill="#e8f0fe"/><rect x="236" y="150" width="92" height="44" rx="6" fill="#e8f0fe"/>
+    <path d="M-40 220h440l-20 28H-20Z" fill="#c4c9ce"/>
+  </g>
+</svg>

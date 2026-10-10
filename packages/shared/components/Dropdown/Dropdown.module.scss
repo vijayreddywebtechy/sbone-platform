@@ -1,0 +1,260 @@
+@use '../../styles' as *;
+
+.field {
+  position: relative;
+  margin-bottom: $spacing-lg;
+}
+
+.label {
+  @include floating-label;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.required {
+  color: $color-error;
+}
+
+.labelAddon {
+  display: inline-flex;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  width: 100%;
+  height: $control-height-lg;
+  padding: 0 $spacing-md;
+  font-family: inherit;
+  font-size: $font-size-base;
+  text-align: left;
+  color: $color-text;
+  background: $color-surface;
+  border: 1px solid $color-field-border;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus-visible,
+  &[aria-expanded='true'] {
+    outline: none;
+    border-color: $color-cta;
+    box-shadow: 0 0 0 1px $color-cta;
+  }
+
+  &:disabled {
+    color: $color-text-muted;
+    background: $color-background;
+    cursor: not-allowed;
+  }
+}
+
+.placeholder .value {
+  color: $color-text;
+}
+
+.invalid {
+  border-color: $color-error;
+}
+
+.value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  color: $color-text-muted;
+}
+
+.arrow {
+  flex-shrink: 0;
+  color: $color-cta;
+  transition: transform 0.15s ease;
+}
+
+.chevron {
+  color: $color-heading;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+// ---- Menu ----
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 30;
+  min-width: 100%;
+  max-width: min(480px, calc(100vw - #{$spacing-xl}));
+  max-height: 320px;
+  margin: 0;
+  padding: 6px;
+  overflow-y: auto;
+  list-style: none;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  box-shadow:
+    0 12px 32px rgba(16, 24, 40, 0.14),
+    0 2px 6px rgba(16, 24, 40, 0.06);
+  animation: menu-in 0.14s ease-out;
+  overscroll-behavior: contain;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.menuUp {
+  top: auto;
+  bottom: calc(100% + 6px);
+  animation-name: menu-in-up;
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes menu-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-md;
+  padding: 9px 10px 9px 12px;
+  border-radius: $radius-sm;
+  cursor: pointer;
+
+  & + & {
+    margin-top: 2px;
+  }
+
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+}
+
+.active {
+  background: $color-info-bg;
+}
+
+.optionText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.optionLabel {
+  font-size: $font-size-sm;
+  line-height: 1.4;
+  color: $color-heading;
+}
+
+.option[aria-selected='true'] .optionLabel {
+  font-weight: $font-weight-medium;
+  color: $color-cta;
+}
+
+.optionDescription {
+  display: block;
+  margin-top: 2px;
+  font-size: $font-size-xs;
+  line-height: 1.4;
+  color: $color-text-muted;
+}
+
+.check {
+  flex-shrink: 0;
+  color: $color-cta;
+}
+
+.message {
+  @include field-message;
+}
+
+.error {
+  color: $color-error;
+}
+
+// ---- Label variants ----
+
+// Plain label above the box instead of on its border
+.labelAbove .label {
+  position: static;
+  display: flex;
+  margin-bottom: 6px;
+  padding: 0;
+  font-size: $font-size-xs;
+  color: $color-text;
+  background: none;
+}
+
+.labelAbove .trigger {
+  font-size: $font-size-sm; // Matches the Combobox input text
+  border-color: $color-text-muted;
+  border-radius: $radius-md;
+}
+
+// The placeholder reads as a hint, not a value
+.labelAbove .placeholder .value {
+  color: $color-text-muted;
+}
+
+.labelHidden .label {
+  @include visually-hidden;
+}
+
+// ---- Inline: borderless trigger inside another control (e.g. a currency picker beside an amount) ----
+
+.inline {
+  margin: 0;
+
+  .trigger {
+    height: 100%;
+    padding: 0 $spacing-sm 0 $spacing-md;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-bold;
+    color: $color-cta;
+    background: none;
+    border: 0;
+    border-radius: 0;
+
+    // The surrounding control shows the focus ring
+    &:focus-visible,
+    &[aria-expanded='true'] {
+      box-shadow: none;
+    }
+  }
+
+  // The trigger shows just the short label (e.g. "USD"); the menu shows the meta too
+  .value .meta {
+    display: none;
+  }
+
+  .menu {
+    min-width: 240px;
+  }
+}
